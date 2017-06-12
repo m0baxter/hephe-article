@@ -150,11 +150,11 @@ if __name__ == "__main__":
     plt.xlabel( "$E_P$ $[\mathrm{keV}/\mathrm{amu}]$", fontsize = lbl_size )
     plt.ylabel( "$\sigma^{11}_{01}$ $[10^{-16}\mathrm{cm}^2]$", fontsize = lbl_size )
 
-    plt.legend( loc="best", fancybox=True, labelspacing = .2, numpoints=1 )
+    #plt.legend( loc="best", fancybox=True, labelspacing = .2, numpoints=1 )
  
-    leg = plt.gca().get_legend()
-    ltext  = leg.get_texts()
-    plt.setp(ltext, fontsize = lgd_size)
+    #leg = plt.gca().get_legend()
+    #ltext  = leg.get_texts()
+    #plt.setp(ltext, fontsize = lgd_size)
  
     ax = plt.gca()
     ax.xaxis.set_tick_params(which='both', width=2)
@@ -183,11 +183,11 @@ if __name__ == "__main__":
     plt.xlabel( "$E_P$ $[\mathrm{keV}/\mathrm{amu}]$", fontsize = lbl_size )
     plt.ylabel( "$\sigma^{11}_{02}$ $[10^{-16}\mathrm{cm}^2]$", fontsize = lbl_size )
 
-    plt.legend( loc="best", fancybox=True, labelspacing = .2, numpoints=1 )
+    #plt.legend( loc="best", fancybox=True, labelspacing = .2, numpoints=1 )
  
-    leg = plt.gca().get_legend()
-    ltext  = leg.get_texts()
-    plt.setp(ltext, fontsize = lgd_size)
+    #leg = plt.gca().get_legend()
+    #ltext  = leg.get_texts()
+    #plt.setp(ltext, fontsize = lgd_size)
  
     ax = plt.gca()
     ax.xaxis.set_tick_params(which='both', width=2)
@@ -206,7 +206,7 @@ if __name__ == "__main__":
     plt.plot( petf[0],  petf[4],  "g--", linewidth = lw, label = "$\mathrm{pETF}$" )
     plt.plot( netf[0],  netf[4],  "b-.", linewidth = lw, label = "$\mathrm{nETF}$" )
     plt.errorbar(Dub89_021[0], Dub89_021[1], yerr = Dub89_021[2], fmt = "bd", markersize = mrks)
-    plt.errorbar(FTFHLP_95_021[0], FTFHLP_95_021[1], yerr = FTFHLP_95_021[2], fmt = "go", markersize = mrks)
+    plt.errorbar(FTFHLP_95_021[0], FTFHLP_95_021[1], yerr = FTFHLP_95_021[2], fmt = "gd", markersize = mrks)
 
     plt.xlim([8,1100])
     plt.ylim( ymin = 0 )
@@ -215,11 +215,11 @@ if __name__ == "__main__":
     plt.xlabel( "$E_P$ $[\mathrm{keV}/\mathrm{amu}]$", fontsize = lbl_size )
     plt.ylabel( "$\sigma^{10}_{01}$ $[10^{-16}\mathrm{cm}^2]$", fontsize = lbl_size )
 
-    plt.legend( loc="best", fancybox=True, labelspacing = .2, numpoints=1 )
+    #plt.legend( loc="best", fancybox=True, labelspacing = .2, numpoints=1 )
  
-    leg = plt.gca().get_legend()
-    ltext  = leg.get_texts()
-    plt.setp(ltext, fontsize = lgd_size)
+    #leg = plt.gca().get_legend()
+    #ltext  = leg.get_texts()
+    #plt.setp(ltext, fontsize = lgd_size)
  
     ax = plt.gca()
     ax.xaxis.set_tick_params(which='both', width=2)
@@ -247,11 +247,11 @@ if __name__ == "__main__":
     plt.xlabel( "$E_P$ $[\mathrm{keV}/\mathrm{amu}]$", fontsize = lbl_size )
     plt.ylabel( "$\sigma^{10}_{01}$ $[10^{-16}\mathrm{cm}^2]$", fontsize = lbl_size )
 
-    plt.legend( loc="best", fancybox=True, labelspacing = .2, numpoints=1 )
+    #plt.legend( loc="best", fancybox=True, labelspacing = .2, numpoints=1 )
 
-    leg = plt.gca().get_legend()
-    ltext  = leg.get_texts()
-    plt.setp(ltext, fontsize = lgd_size)
+    #leg = plt.gca().get_legend()
+    #ltext  = leg.get_texts()
+    #plt.setp(ltext, fontsize = lgd_size)
  
     ax = plt.gca()
     ax.xaxis.set_tick_params(which='both', width=2)
@@ -278,11 +278,11 @@ if __name__ == "__main__":
     plt.xlabel( "$E_P$ $[\mathrm{keV}/\mathrm{amu}]$", fontsize = lbl_size )
     plt.ylabel( "$\sigma^{12}_{00}$ $[10^{-16}\mathrm{cm}^2]$", fontsize = lbl_size )
 
-    plt.legend( loc="best", fancybox=True, labelspacing = .2, numpoints=1 )
+    #plt.legend( loc="best", fancybox=True, labelspacing = .2, numpoints=1 )
  
-    leg = plt.gca().get_legend()
-    ltext  = leg.get_texts()
-    plt.setp(ltext, fontsize = lgd_size)
+    #leg = plt.gca().get_legend()
+    #ltext  = leg.get_texts()
+    #plt.setp(ltext, fontsize = lgd_size)
  
     ax = plt.gca()
     ax.xaxis.set_tick_params(which='both', width=2)
@@ -301,7 +301,7 @@ if __name__ == "__main__":
     plt.plot( petf[0],  petf[7],  "g--", linewidth = lw, label = "$\mathrm{pETF}$" )
     plt.plot( netf[0],  netf[7],  "b-.", linewidth = lw, label = "$\mathrm{nETF}$" )
     plt.errorbar(Dub89_102[0], Dub89_102[1], yerr = Dub89_102[2], fmt = "bd", markersize = mrks)
-    plt.errorbar(SSMSM_11_102[0], SSMSM_11_102[1], yerr = SSMSM_11_102[2], fmt = "rx", markersize = mrks)
+    plt.errorbar(SSMSM_11_102[0], SSMSM_11_102[1], yerr = SSMSM_11_102[2], fmt = "rd", markersize = mrks)
 
     plt.xlim([8, 1100])
     plt.ylim( ymin = 0 )
@@ -310,11 +310,11 @@ if __name__ == "__main__":
     plt.xlabel( "$E_P$ $[\mathrm{keV}/\mathrm{amu}]$", fontsize = lbl_size )
     plt.ylabel( "$\sigma^{12}_{01}$ $[10^{-16}\mathrm{cm}^2]$", fontsize = lbl_size )
 
-    plt.legend( loc="best", fancybox=True, labelspacing = .2, numpoints=1 )
+    #plt.legend( loc="best", fancybox=True, labelspacing = .2, numpoints=1 )
  
-    leg = plt.gca().get_legend()
-    ltext  = leg.get_texts()
-    plt.setp(ltext, fontsize = lgd_size)
+    #leg = plt.gca().get_legend()
+    #ltext  = leg.get_texts()
+    #plt.setp(ltext, fontsize = lgd_size)
  
     ax = plt.gca()
     ax.xaxis.set_tick_params(which='both', width=2)
@@ -333,7 +333,7 @@ if __name__ == "__main__":
     plt.plot( petf[0],  petf[8],  "g--", linewidth = lw, label = "$\mathrm{pETF}$" )
     plt.plot( netf[0],  netf[8],  "b-.", linewidth = lw, label = "$\mathrm{nETF}$" )
     plt.errorbar(Dub89_003[0], Dub89_003[1], yerr = Dub89_003[2], fmt = "bd", markersize = mrks)
-    plt.errorbar(SSMSM_11_003[0], SSMSM_11_003[1], yerr = SSMSM_11_003[2], fmt = "rx", markersize = mrks)
+    plt.errorbar(SSMSM_11_003[0], SSMSM_11_003[1], yerr = SSMSM_11_003[2], fmt = "rd", markersize = mrks)
 
     plt.xlim([8, 1100])
     plt.ylim( ymin = 0 )
@@ -342,11 +342,11 @@ if __name__ == "__main__":
     plt.xlabel( "$E_P$ $[\mathrm{keV}/\mathrm{amu}]$", fontsize = lbl_size )
     plt.ylabel( "$\sigma^{12}_{02}$ $[10^{-16}\mathrm{cm}^2]$", fontsize = lbl_size )
 
-    plt.legend( loc="best", fancybox=True, labelspacing = .2, numpoints=1 )
+    #plt.legend( loc="best", fancybox=True, labelspacing = .2, numpoints=1 )
  
-    leg = plt.gca().get_legend()
-    ltext  = leg.get_texts()
-    plt.setp(ltext, fontsize = lgd_size)
+    #leg = plt.gca().get_legend()
+    #ltext  = leg.get_texts()
+    #plt.setp(ltext, fontsize = lgd_size)
  
     ax = plt.gca()
     ax.xaxis.set_tick_params(which='both', width=2)

@@ -1,5 +1,5 @@
 
-\documentclass[aps, pra, preprint, groupedaddress, amsfonts,
+\documentclass[aps, pra, reprint, groupedaddress, amsfonts,
                amsmath, amssymb, showpacs, nofootinbib]{revtex4-1}
 
 \usepackage{microtype}
@@ -12,21 +12,22 @@
 
 \begin{document}
 
-\title{This is a title}
+\title{Ceci n'est pas un titre}
 \author{Matthew Baxter}
 \email[]{baxterma@yorku.ca}
 \author{Tom Kirchner}
 \email[]{tomk@yorku.ca}
 \affiliation{Department of Physics and Astronomy, York University, Toronto, Ontario, Canada, M3J 1P3}
 \author{Eberhard Engel}
-\affiliation{Center for Scientific Computing, J.W. Goethe-Universit\"{a}t, D-60438 Frankfurt/Main, Germany}
+\affiliation{Center for Scientific Computing, J.W. Goethe-Universit\"{a}t, D-60438 Frankfurt/Main,
+             Germany}
 \date{\today}
 
 \begin{abstract}
    !`Empty!
 \end{abstract}
 
-\pacs{31.15.ee, 34.50.Fa, 34.10.+x, 34.70.+e} %nnnote: probably change this
+\pacs{31.15.ee, 34.50.Fa, 34.10.+x, 34.70.+e (Maybe\dots)} %nnnote: probably change this
 
 \maketitle
 
@@ -34,6 +35,117 @@
 \end{section}
 
 \begin{section}{Theory \label{sec:theory}}
+
+   \begin{subsection}{TDDFT \label{sec:tddft}}
+
+      A system of $N$ particles may be described by an $N$-particle wave function $\Psi(t)$ whose
+      evolution is governed by the time-dependent Shr\"{o}dinger equation (\textsc{tdse})
+      %
+      \begin{equation} \label{eq:tdse}
+         i \frac{\mathrm{d} \Psi(t)}{\mathrm{d}t} = \hat{H}(t),
+      \end{equation}
+      %
+      with a Hamiltonian $\hat{H}$ which may be written as
+      %
+      \begin{equation} \label{eq:ham}
+         \hat{H}(t) = \hat{T} + \hat{V}_\mathrm{ee} + \hat{V}_\mathrm{ext}(t),
+      \end{equation}
+      %
+      where $\hat{T}$ is the kinetic energy, $\hat{V}_\mathrm{ee}$ are the two particle interactions,
+      and $\hat{V}_\mathrm{ext}$ is a time-dependent, one-particle interaction potential.
+
+      The computationally intensive two-body term $\hat{V}_\mathrm{ee}$ makes direct solutions of the
+      \textsc{tdse} difficult. Time-dependent density-functional theory~\cite{tddft, ullrich} (TDDFT)
+      offers a solution to this problem. By making use of the mapping between the one-particle density
+      %
+      \begin{equation} \label{eq:dendef}
+         n(\mathbf{r},t) = N \sum\limits_{sigma} \int \mathrm{d}^3 r_2 \dots \mathrm{d}^3 r_N \,
+                            \left| \Psi(\mathbf{x}_i,t) \right|^2
+      \end{equation}
+      %
+      and the external potential $\hat{V}_\mathrm{ext}$, where $x_i = (\mathbf{r}_i, \sigma_i)$ label
+      the position and spin of the $i$\textsuperscript{th} particle, guaranteed by the Runge-Gross
+      theorem~\cite{rg_theorem, td-spindep} the interacting system may be mapped onto as system of
+      non-interacting particles.
+
+      This so-called Kohn-Sham system consists of $N$ spin-orbitals $\varphi_{j \sigma}$ which evolve
+      according to the time-dependent Kohn-Sham equation
+      %
+      \begin{equation} \label{eq:tdks}
+         i \frac{\partial}{\partial t} \varphi_{j\sigma} = \left( -\frac{\Delta}{2} +
+               v^\sigma_\mathrm{\textsc{ks}}[n_\uparrow, n_\downarrow](\mathbf{r},t)
+               \right) \varphi_{j\sigma}(\mathbf{r},t),
+      \end{equation}
+      %
+      such that
+      %
+      \begin{equation} \label{eq:ksden}
+         n(\mathbf{r},t) = \sum\limits_\sigma \sum\limits_{j=1}^{N_\sigma}
+                           \left| \varphi_{j\sigma} \right|^2.
+      \end{equation}
+      
+      In Eq.~\eqref{eq:tdks} $n_\sigma$ are the spin-up/down one-particle densities given by
+      %
+      \begin{equation} \label{eq:spinden}
+         n_\sigma = \sum\limits_{j=1}^{N_\sigma} \left| \varphi_{j\sigma} \right|^2
+      \end{equation}
+      %
+      and $v^\sigma_\textsc{ks}$ is the Kohn-Sham potential. The potential may be separated into several
+      simpler objects
+      %
+      \begin{equation} \label{eq:vks}
+         v^\sigma_\mathrm{\textsc{ks}}[n_\uparrow, n_\downarrow] = v_\mathrm{ext} + v_\mathrm{H}[n]
+                                                   + v^\sigma_\mathrm{xc}[n_\uparrow, n_\downarrow].
+      \end{equation}
+      %
+      The first term in this expression is the external potential, which is essentially the same as the
+      potential $\hat{V}_\mathrm{ext}$ of Eqs.~\eqref{eq:ham}. For the He\textsuperscript{+}-He
+      collision system considered in this work it may be written, making use of the semi-classical
+      approximation,
+      %
+      \begin{equation} \label{eq:phe2p-ext}
+         v_\mathrm{ext}(\mathbf{r},t) = -\frac{2}{r} 
+         - \frac{2}{\left| \mathbf{r} - \mathbf{R}(t) \right|},
+      \end{equation}
+      %
+      where $\mathbf{R}(t) = (b,0,V t)$ is the straight-line trajectory of the projectile with velocity
+      $V$ and impact parameter (distance of closest approach) $b$.
+      
+      The next term is the Hartree screening potential
+      %
+      \begin{equation} \label{eq:vh}
+         v_\mathrm{H}(\mathbf{r},t) = \int \frac{n(\mathbf{r}^\prime, t)}
+            {\left| \mathbf{r} - \mathbf{r}^\prime\right|} \, \mathrm{d}^3 r^\prime.
+      \end{equation}
+      %
+      The last term is the exchange-correlation potential which encodes the complicated
+      electron-electron interaction potential into the language of the non-interacting system. For
+      convenience this is often further broken down into separate exchange and correlation potentials
+      %
+      \begin{equation} \label{eq:vxc}
+         v^\sigma_\mathrm{xc} = v^\sigma_\mathrm{x} + v^\sigma_\mathrm{c}.
+      \end{equation}
+
+      Splitting $v_\mathrm{xc}$ into an exchange and correlation part facilitates the application of the
+      x-only approximation where the correlation potential is taken to be zero ($v^\sigma_\mathrm{c} =
+      0$). Within this approximation $v^\sigma_\mathrm{x}$ may be determined exactly via the optimized
+      potential method~\cite{opm1, opm2, tdopm}. The complexity of the \textsc{opm} make it difficult
+      prohibitively difficult to implement in general. As a secondary option one my instead make use of
+      the Krieger-Li-Iafrate approximation~\cite{klieq, tdkli1, tdkli2} (\textsc{kli}). In many
+      situations potentials generated using \textsc{kli} are numerically indistinguishable from those
+      produced by the full \textsc{opm}. The success of the \textsc{kli} is due to the fact that it
+      preserves several properties of the exact potential. In particular \textsc{kli} maintains the
+      correct asymptotics
+      %
+      \begin{equation} \label{eq:asymp}
+         \lim\limits_{r \rightarrow \infty} v_\mathrm{x}^\sigma (\mathbf{r}) = -\frac{1}{r}.
+      \end{equation}
+   
+   \end{subsection}
+
+   \begin{subsection}{The exchange potential \label{sec:xpot}}
+   \end{subsection}
+
 \end{section}
 
 \begin{section}{Discussion \label{sec:disc}}
