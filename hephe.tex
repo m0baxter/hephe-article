@@ -103,7 +103,7 @@
       collision system considered in this work it may be written, making use of the semi-classical
       approximation,
       %
-      \begin{equation} \label{eq:phe2p-ext}
+      \begin{equation} \label{eq:hephe-ext}
          v_\mathrm{ext}(\mathbf{r},t) = -\frac{2}{r} 
          - \frac{2}{\left| \mathbf{r} - \mathbf{R}(t) \right|},
       \end{equation}
@@ -144,6 +144,72 @@
    \end{subsection}
 
    \begin{subsection}{The exchange potential \label{sec:xpot}}
+
+      The one-particle density was determined by solving Eq.~\eqref{eq:tdks} using the two-center basis
+      generator method~\cite{tcbgm} (\textsc{tc-bgm}). As mentioned above this relies upon the
+      specification of an exchange-correlation potential. While the correlation potential may be
+      ignored, that is the x-only approximation may be used (with some understanding of the
+      consequences), an accurate exchange-potential is essential for a precise description of the
+      He\textsuperscript{+}-He collision system. The spin polarized nature of the system, which
+      emphasizes exchange effects. To this end the \textsc{kli} approximation to the \textsc{opm} was
+      employed in the calculation of $v^\sigma_\mathrm{x}$.
+
+      The ground-state density functional theory (\textsc{dft}) scheme of~\cite{diamol} has been adapted
+      to calculate a time-dependent exchange potential. At any instant of time, $t$, the
+      He\textsuperscript{+}-He system may be regarded as a diatomic quasi-molecule with an internuclear
+      distance $R_\mathrm{int}(t) = \sqrt{b^2 + z(t)^2}$, where $b$ and $z$ are the impact parameter and
+      $z$ position of the projectile as described below Eq.~\eqref{eq:hephe-ext}. If at each time-step
+      of the \textsc{tc-bgm} the time-dependent Kohn-Sham orbitals, $\varphi_{\sigma j}(\mathbf{r},t)$
+      are fed into the \textsc{kli} functional an exchange-potential,
+      $v^{\sigma}_\mathrm{x}[\varphi_{\sigma j};t]$, may be calculated at each $t$, effectively
+      giving one the time-dependent exchange-potential $v^{\sigma}_\mathrm{x}[\varphi_{\sigma j}](t)$.
+      The restriction of the \textsc{kli} scheme to systems of cylindrical symmetry complicates this
+      processes, in general $\varphi_{j \sigma}$ will not be forced to exhibit any specific symmetry.
+      
+      In order to detail a solution to the symmetry problem a more thorough description of the
+      \textsc{tc-bgm} is necessary. Within the \textsc{tc-bgm} the Kohn-Sham orbitals are represented in
+      a basis
+      %
+      \begin{equation} \label{eq:bgmexp}
+         \varphi_{\sigma j}(\mathbf{r},t) = \sum\limits_{c \in \{P, T\}} \sum\limits_{k, L, M}
+                               d_{c k L M}^{\sigma j}(t) \tilde{\chi}^{LM}_{c k}(\mathbf{r},t),
+      \end{equation}
+      %
+      where
+      %
+      \begin{equation} \label{eq:etfbasis}
+         \tilde{\chi}^{00}_{ck}(\mathbf{r}),t =
+            \begin{cases}
+               e^{i \mathbf{v}_T \cdot \mathbf{r}} {\chi}^{00}_{c k}(\mathbf{r},t) & c = T, \\[2ex]
+               e^{i \mathbf{v}_P \cdot \mathbf{r}} {\chi}^{00}_{c k}(\mathbf{r},t) & c = P,
+            \end{cases}
+      \end{equation}
+      %
+      which are the basis functions with electron translation factors (\textsc{etf}) included. The basis
+      functions themselves are given by
+      %
+      \begin{equation} \label{eq:bgmbasis}
+         \chi^{LM}_{ck} (\mathbf{r},t)
+         = W_T(r,\epsilon_T)^L W_P( \mathbf{r},t, \epsilon_P)^M \chi^{00}_{ck} (\mathbf{r}),
+      \end{equation}
+      %
+      with
+      %
+      \begin{equation}
+         W_T(r,\epsilon_T) = \frac{1 - e^{-\epsilon_T r}}{r},
+      \end{equation}
+      %
+      \begin{equation}
+         W_P (\mathbf{r},t,\epsilon_P)
+         = \frac{1 - e^{-\epsilon_P|\mathbf{r} - \mathbf{R}(t)|}}{|\mathbf{r} - \mathbf{R}(t)|}.
+      \end{equation}
+      %
+      In Eq.~\eqref{eq:bgmbasis} the functions $\chi^{00}_{ck}$ are the ground-state orbitals for the
+      target helium atom ($c = T$) and the projectile helium ion ($c = P$).  In order to keep the number
+      of states in the basis to a minimum and simplify the description only those states with $L = 0$
+      where included. This simplification has proved sufficient in the past~\cite{bgm-rev}. The
+      remaining regularizer is set to $\epsilon_P = 1$.
+
    \end{subsection}
 
 \end{section}
