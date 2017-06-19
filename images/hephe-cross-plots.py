@@ -51,6 +51,10 @@ FTFHLP_95_021 = [ [ 125,    150,    200,    250,    500,    1000,   1500,   2000
                   [ 0.6E-2, 0.4E-2, 1.5E-3, 0.7E-3, 0.6E-4, 0.2E-5, 0.3E-6, 0.7E-7, 0.2E-7 ] ]
 
 #Santos:
+SSMSM_95_201 = [ [ 250,     312.5,   375,     500,     625,    750,    875    ],
+                 [ 20.1E-2, 19.2E-2, 16.7E-2, 12.9E-2, 9.8E-2, 8.7E-2, 9.3E-2 ],
+                 [ 2.4E-2,  2.3E-2,  2.0E-2,  1.5E-2,  1.2E-2, 1.0E-2, 1.1E-2 ] ]
+
 SSMSM_11_102 = [ [ 250,    312.5,  375,    500,    625,    750,    875    ],
                  [ 8.9E-2, 7.9E-2, 7.9E-2, 6.9E-2, 4.4E-2, 4.6E-2, 3.6E-2 ],
                  [ 1.5E-2, 1.3E-2, 1.3E-2, 1.2E-2, 0.7E-2, 0.9E-2, 0.6E-2 ] ]
@@ -148,7 +152,7 @@ if __name__ == "__main__":
     plt.xscale("log")
 
     plt.xlabel( "$E_P$ $[\mathrm{keV}/\mathrm{amu}]$", fontsize = lbl_size )
-    plt.ylabel( "$\sigma^{11}_{01}$ $[10^{-16}\mathrm{cm}^2]$", fontsize = lbl_size )
+    plt.ylabel( "$\sigma_{11}$ $[10^{-16}\mathrm{cm}^2]$", fontsize = lbl_size )
 
     #plt.legend( loc="best", fancybox=True, labelspacing = .2, numpoints=1 )
  
@@ -181,7 +185,7 @@ if __name__ == "__main__":
     plt.xscale("log")
 
     plt.xlabel( "$E_P$ $[\mathrm{keV}/\mathrm{amu}]$", fontsize = lbl_size )
-    plt.ylabel( "$\sigma^{11}_{02}$ $[10^{-16}\mathrm{cm}^2]$", fontsize = lbl_size )
+    plt.ylabel( "$\sigma_{12}$ $[10^{-16}\mathrm{cm}^2]$", fontsize = lbl_size )
 
     #plt.legend( loc="best", fancybox=True, labelspacing = .2, numpoints=1 )
  
@@ -213,7 +217,7 @@ if __name__ == "__main__":
     plt.xscale("log")
 
     plt.xlabel( "$E_P$ $[\mathrm{keV}/\mathrm{amu}]$", fontsize = lbl_size )
-    plt.ylabel( "$\sigma^{10}_{01}$ $[10^{-16}\mathrm{cm}^2]$", fontsize = lbl_size )
+    plt.ylabel( "$\sigma_{21}$ $[10^{-16}\mathrm{cm}^2]$", fontsize = lbl_size )
 
     #plt.legend( loc="best", fancybox=True, labelspacing = .2, numpoints=1 )
  
@@ -245,7 +249,7 @@ if __name__ == "__main__":
     plt.xscale("log")
 
     plt.xlabel( "$E_P$ $[\mathrm{keV}/\mathrm{amu}]$", fontsize = lbl_size )
-    plt.ylabel( "$\sigma^{10}_{01}$ $[10^{-16}\mathrm{cm}^2]$", fontsize = lbl_size )
+    plt.ylabel( "$\sigma_{20}$ $[10^{-16}\mathrm{cm}^2]$", fontsize = lbl_size )
 
     #plt.legend( loc="best", fancybox=True, labelspacing = .2, numpoints=1 )
 
@@ -270,13 +274,14 @@ if __name__ == "__main__":
     plt.plot( petf[0],  petf[6],  "g--", linewidth = lw, label = "$\mathrm{pETF}$" )
     plt.plot( netf[0],  netf[6],  "b-.", linewidth = lw, label = "$\mathrm{nETF}$" )
     plt.errorbar(Dub89_201[0], Dub89_201[1], yerr = Dub89_201[2], fmt = "bd", markersize = mrks)
+    #plt.errorbar(SSMSM_95_201[0], SSMSM_95_201[1], yerr = SSMSM_95_201[2], fmt = "m^", markersize = mrks)
 
     plt.xlim([8,1100])
     plt.ylim( ymin = 0 )
     plt.xscale("log")
 
     plt.xlabel( "$E_P$ $[\mathrm{keV}/\mathrm{amu}]$", fontsize = lbl_size )
-    plt.ylabel( "$\sigma^{12}_{00}$ $[10^{-16}\mathrm{cm}^2]$", fontsize = lbl_size )
+    plt.ylabel( "$\sigma_{01}$ $[10^{-16}\mathrm{cm}^2]$", fontsize = lbl_size )
 
     #plt.legend( loc="best", fancybox=True, labelspacing = .2, numpoints=1 )
  
@@ -301,14 +306,14 @@ if __name__ == "__main__":
     plt.plot( petf[0],  petf[7],  "g--", linewidth = lw, label = "$\mathrm{pETF}$" )
     plt.plot( netf[0],  netf[7],  "b-.", linewidth = lw, label = "$\mathrm{nETF}$" )
     plt.errorbar(Dub89_102[0], Dub89_102[1], yerr = Dub89_102[2], fmt = "bd", markersize = mrks)
-    plt.errorbar(SSMSM_11_102[0], SSMSM_11_102[1], yerr = SSMSM_11_102[2], fmt = "rd", markersize = mrks)
+    plt.errorbar(SSMSM_11_102[0], SSMSM_11_102[1], yerr = SSMSM_11_102[2], fmt = "r+", markersize = mrks)
 
     plt.xlim([8, 1100])
     plt.ylim( ymin = 0 )
     plt.xscale("log")
 
     plt.xlabel( "$E_P$ $[\mathrm{keV}/\mathrm{amu}]$", fontsize = lbl_size )
-    plt.ylabel( "$\sigma^{12}_{01}$ $[10^{-16}\mathrm{cm}^2]$", fontsize = lbl_size )
+    plt.ylabel( "$\sigma_{02}$ $[10^{-16}\mathrm{cm}^2]$", fontsize = lbl_size )
 
     #plt.legend( loc="best", fancybox=True, labelspacing = .2, numpoints=1 )
  
@@ -333,14 +338,14 @@ if __name__ == "__main__":
     plt.plot( petf[0],  petf[8],  "g--", linewidth = lw, label = "$\mathrm{pETF}$" )
     plt.plot( netf[0],  netf[8],  "b-.", linewidth = lw, label = "$\mathrm{nETF}$" )
     plt.errorbar(Dub89_003[0], Dub89_003[1], yerr = Dub89_003[2], fmt = "bd", markersize = mrks)
-    plt.errorbar(SSMSM_11_003[0], SSMSM_11_003[1], yerr = SSMSM_11_003[2], fmt = "rd", markersize = mrks)
+    plt.errorbar(SSMSM_11_003[0], SSMSM_11_003[1], yerr = SSMSM_11_003[2], fmt = "r+", markersize = mrks)
 
     plt.xlim([8, 1100])
     plt.ylim( ymin = 0 )
     plt.xscale("log")
 
     plt.xlabel( "$E_P$ $[\mathrm{keV}/\mathrm{amu}]$", fontsize = lbl_size )
-    plt.ylabel( "$\sigma^{12}_{02}$ $[10^{-16}\mathrm{cm}^2]$", fontsize = lbl_size )
+    plt.ylabel( "$\sigma{03}$ $[10^{-16}\mathrm{cm}^2]$", fontsize = lbl_size )
 
     #plt.legend( loc="best", fancybox=True, labelspacing = .2, numpoints=1 )
  
@@ -369,7 +374,7 @@ if __name__ == "__main__":
     plt.xscale("log")
 
     plt.xlabel( "$E_P$ $[\mathrm{keV}/\mathrm{amu}]$", fontsize = lbl_size )
-    plt.ylabel( "$\sigma^{12}_{2}$ $[10^{-16}\mathrm{cm}^2]$", fontsize = lbl_size )
+    plt.ylabel( "$\sigma_{00}$ $[10^{-16}\mathrm{cm}^2]$", fontsize = lbl_size )
 
     plt.legend( loc="best", fancybox=True, labelspacing = .2, numpoints=1 )
 
@@ -399,7 +404,7 @@ if __name__ == "__main__":
     plt.xscale("log")
 
     plt.xlabel( "$E_P$ $[\mathrm{keV}/\mathrm{amu}]$", fontsize = lbl_size )
-    plt.ylabel( "$\sigma^{12}_{2}$ $[10^{-16}\mathrm{cm}^2]$", fontsize = lbl_size )
+    plt.ylabel( "$\sigma^{30}$ $[10^{-16}\mathrm{cm}^2]$", fontsize = lbl_size )
 
     plt.legend( loc="best", fancybox=True, labelspacing = .2, numpoints=1 )
  

@@ -33,6 +33,65 @@
 \maketitle
 
 \begin{section}{Introduction \label{sec:intro}}
+
+   Atomic collision systems are often explored as testbeds for few-electron quantum dynamics. The
+   general collision system carries active electrons on both the target and projectile. The simplest
+   generic collision system consists of target with two electrons and a single electron on the
+   projectile. A prototypical example from this class of problem is the He\textsuperscript{+}-He system.
+
+   A variety of charge transfer processes are possible. These can be broadly categorized into those that
+   involve one active electron:
+   %
+   \begin{equation} \label{eq:tpi111}
+      \mathrm{He}^+ + \mathrm{He} \rightarrow \mathrm{He}^+ + \mathrm{He}^+ + e^-
+   \end{equation}
+   %
+   \begin{equation} \label{eq:tpi120}
+      \mathrm{He}^+ + \mathrm{He} \rightarrow \mathrm{He} + \mathrm{He}^+,
+   \end{equation}
+   %
+   \begin{equation} \label{eq:tpi201}
+      \mathrm{He}^+ + \mathrm{He} \rightarrow \mathrm{He}^{2+} + \mathrm{He} + e^-,
+   \end{equation}
+   %
+   two active electrons:
+   %
+   \begin{equation} \label{012}
+      \mathrm{He}^+ + \mathrm{He} \rightarrow \mathrm{He}^+ + \mathrm{He}^{2+} + 2e^-
+   \end{equation}
+   %
+   \begin{equation} \label{eq:tpi102}
+      \mathrm{He}^+ + \mathrm{He} \rightarrow \mathrm{He}^{2+} + \mathrm{He}^+ + 2e^-
+   \end{equation}
+   %
+   \begin{equation} \label{eq:tpi021}
+      \mathrm{He}^+ + \mathrm{He} \rightarrow \mathrm{He} + \mathrm{He}^{2+} + e^-,
+   \end{equation}
+   %
+   and three active electrons:
+   \begin{equation} \label{eq:tpi003}
+      \mathrm{He}^+ + \mathrm{He} \rightarrow \mathrm{He}^{2+} + \mathrm{He}^{2+} + 3e^{-}.
+   \end{equation}
+   %
+   Additionally there is the channel where no charges are transferred and the two channels that result
+   in the production of He\textsuperscript{-}. From the perspective of theory, the later is unphysical
+   due to the finite lifetime of even the most stable species of the negative helium
+   ion~\cite{neghelife}. From the point of view of experiment He\textsuperscript{-} production
+   may be controlled for~\cite{metahe} and cross sections can even be made negligible~\cite{neghe-neg}.
+
+   Total cross sections for the processes described in Eqs.~\eqref{eq:tpi111}-\eqref{eq:tpi003} have
+   been calculated within a spin-density functional theoretic~\cite{td-spindep} framework, a
+   generalization of time-dependent density functional theory~\cite{tddft, ullrich} to spin-dependent
+   systems. The spin-polarized nature of the system accentuates the importance of exchange effects
+   which in turn necessitates an accurate exchange potential. An exploration of a procedure for
+   calculating such potential comprises the bulk of this work.
+
+   Experimental results for the various outcome channels over a large range of impact
+   energies~\cite{BS58, HN78, HSE78, dCFdP88, DT-88, Dub-89, ASL91, FTFHLP-95, SSMSM-11} provide a
+   useful benchmark for this process. Sizable number of theoretical calculations 
+
+   Atomic units ($\hbar = m_e = e = 1$) are used unless stated otherwise.
+
 \end{section}
 
 \begin{section}{Theory \label{sec:theory}}
@@ -211,7 +270,9 @@
 
       It is clear from the above description that only the basis states corresponding s-type orbitals
       will make cylindrically symmetric contributions to the \textsc{ks}-orbitals. The simplest solution
-      is to only feed the 1s contributions into the \textsc{kli} functional, more explicitly the orbital
+      is to only feed the 1s contributions into the \textsc{kli} functional. While higher s-states are
+      also admissible beyond 1s they will not be most occupied states meaning there inclusion will do
+      little to improve the accuracy of the description of a given orbital. More explicitly the orbital
       will take the form (leaving out \textsc{etf}'s)
       %
       \begin{equation} \label{eq:1sonly}
@@ -297,7 +358,7 @@
       %
       Regardless of which option is chosen it is important that $V_\mathrm{H}$ be determined with the
       same set of orbitals used in the calculation of $v_\mathrm{x}^\sigma$, preserving the precise
-      cancellation of the self interacion present in the Hartee potential.
+      cancellation of the self interaction present in the Hartree potential.
 
    \end{subsection}
 
@@ -323,8 +384,7 @@
                Theoretical: response p\textsc{etf} (solid line), response n\textsc{etf} (dotted line),
                             no response p\textsc{etf} (dashed line), and response n\textsc{etf}
                             (dash-dotted line).
-               Experimental: diamonds~\cite{Dub-89}.
-\label{fig:cs201}}
+               Experimental: diamonds~\cite{Dub-89}. \label{fig:cs201}}
    \end{figure}
 
    \begin{figure}[htp]
@@ -334,8 +394,7 @@
                Theoretical: response p\textsc{etf} (solid line), response n\textsc{etf} (dotted line),
                             no response p\textsc{etf} (dashed line), and response n\textsc{etf}
                             (dash-dotted line).
-               Experimental: diamonds~\cite{Dub-89} and circles~\cite{FTFHLP-95}.
- \label{fig:cs120}}
+               Experimental: diamonds~\cite{Dub-89} and circles~\cite{FTFHLP-95}. \label{fig:cs120}}
    \end{figure}
 
    \begin{figure}[htp]
@@ -346,7 +405,7 @@
                             no response p\textsc{etf} (dashed line), and response n\textsc{etf}
                             (dash-dotted line).
                Experimental: diamonds~\cite{Dub-89}, circles~\cite{FTFHLP-95}, and squares~\cite{DT-88}.
- \label{fig:cs012}}
+               \label{fig:cs012}}
    \end{figure}
 
    \begin{figure}[htp]
@@ -356,8 +415,7 @@
                Theoretical: response p\textsc{etf} (solid line), response n\textsc{etf} (dotted line),
                             no response p\textsc{etf} (dashed line), and response n\textsc{etf}
                             (dash-dotted line).
-               Experimental: diamonds~\cite{Dub-89} and crosses~\cite{SSMSM-11}.
- \label{fig:cs102}}
+               Experimental: diamonds~\cite{Dub-89} and crosses~\cite{SSMSM-11}. \label{fig:cs102}}
    \end{figure}
 
    \begin{figure}[htp]
@@ -367,8 +425,7 @@
                Theoretical: response p\textsc{etf} (solid line), response n\textsc{etf} (dotted line),
                             no response p\textsc{etf} (dashed line), and response n\textsc{etf}
                             (dash-dotted line).
-               Experimental: diamonds~\cite{Dub-89} and circles~\cite{FTFHLP-95}.
- \label{fig:cs021}}
+               Experimental: diamonds~\cite{Dub-89} and circles~\cite{FTFHLP-95}. \label{fig:cs021}}
    \end{figure}
 
    \begin{figure}[htp]
@@ -378,8 +435,7 @@
                Theoretical: response p\textsc{etf} (solid line), response n\textsc{etf} (dotted line),
                             no response p\textsc{etf} (dashed line), and response n\textsc{etf}
                             (dash-dotted line).
-               Experimental: diamonds~\cite{Dub-89} and crosses~\cite{SSMSM-11}.
- \label{fig:cs003}}
+               Experimental: diamonds~\cite{Dub-89} and crosses~\cite{SSMSM-11}. \label{fig:cs003}}
    \end{figure}
 
 \end{section}
