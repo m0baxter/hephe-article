@@ -1,4 +1,5 @@
 
+import numpy as np
 import matplotlib
 matplotlib.use('cairo')
 import matplotlib.pyplot as plt
@@ -76,8 +77,6 @@ DT_88_012 = [ [ 33.3,     37.5,    50,      75,       100,      175,    250,    
 def readCross( path ):
     """Read cross section data from file at path."""
 
-    readFile = open( path, 'r' )
-
     Es    = []
     c210s = []
     c111s = []
@@ -90,26 +89,50 @@ def readCross( path ):
     c300s = []
     c030s = []
 
-    readFile.readline()
-    readFile.readline()
-
-    for line in readFile:
-
-        E, c210, c111, c012, c021, c120, c201, c102, c003, c300, c030 = line.split()
+    with open( path, 'r' ) as readFile:
         
-        Es.append( float(E) )
-        c210s.append( float(c210) )
-        c111s.append( float(c111) )
-        c012s.append( float(c012) )
-        c021s.append( float(c021) )
-        c120s.append( float(c120) )
-        c201s.append( float(c201) )
-        c102s.append( float(c102) )
-        c003s.append( float(c003) )
-        c300s.append( float(c300) )
-        c030s.append( float(c030) )
+        readFile.readline()
+        readFile.readline()
+        
+        for line in readFile:
+            
+            E, c210, c111, c012, c021, c120, c201, c102, c003, c300, c030 = line.split()
+            
+            Es.append( float(E) )
+            c210s.append( float(c210) )
+            c111s.append( float(c111) )
+            c012s.append( float(c012) )
+            c021s.append( float(c021) )
+            c120s.append( float(c120) )
+            c201s.append( float(c201) )
+            c102s.append( float(c102) )
+            c003s.append( float(c003) )
+            c300s.append( float(c300) )
+            c030s.append( float(c030) )
 
     return [ Es, c210s, c111s, c012s, c021s, c120s, c201s, c102s, c003s, c300s, c030s ]
+
+
+def readData( path ):
+    """Reads a data file for another calculation."""
+
+    Es = []
+    vals = []
+
+    with open(path,'r') as readFile:
+        for line in readFile:
+
+            E, v = line.split()
+
+            Es.append( float(E) )
+            vals.append( float(v) )
+
+    return ( Es, vals )
+
+
+def vToE(v):
+
+    return 27.2114 * 1836.15 * v * v / 2000
 
 
 if __name__ == "__main__":
@@ -127,6 +150,14 @@ if __name__ == "__main__":
     petf = readCross("./images/data/noresp-etf.txt")
     netf = readCross("./images/data/noresp-netf.txt")
 
+    MMA03s01 = readData( "./images/data/MMA03-s01.txt" )
+    MG10s11 = np.array( readData( "./images/data/MG10-s11.txt" ) )
+    GAG15s20 = np.array( readData( "./images/data/GAG15-s20.txt" ) )
+
+    SM03s01 = np.array( readData( "./images/data/SM03-s01.txt" ) )
+    SM03s02 = np.array( readData( "./images/data/SM03-s02.txt" ) )
+    SM03s03 = np.array( readData( "./images/data/SM03-s03.txt" ) )
+
     fig1 = plt.figure(1, figsize = (12,10))
     fig2 = plt.figure(2, figsize = (12,10))
     fig3 = plt.figure(3, figsize = (12,10))
@@ -142,8 +173,9 @@ if __name__ == "__main__":
 
     plt.plot( full[0],  full[2],  "k-",  linewidth = lw, label = "$\mathrm{Resp}$ $\mathrm{pETF}$" )
     plt.plot( part[0],  part[2],  "r:",  linewidth = lw, label = "$\mathrm{Resp}$ $\mathrm{nETF}$" )
-    plt.plot( petf[0],  petf[2],  "g--", linewidth = lw, label = "$\mathrm{pETF}$" )
-    plt.plot( netf[0],  netf[2],  "b-.", linewidth = lw, label = "$\mathrm{nETF}$" )
+    #plt.plot( petf[0],  petf[2],  "g--", linewidth = lw, label = "$\mathrm{pETF}$" )
+    #plt.plot( netf[0],  netf[2],  "b-.", linewidth = lw, label = "$\mathrm{nETF}$" )
+    plt.plot( vToE(MG10s11[0]), MG10s11[1] * 0.5291772083**2, "g--", linewidth = lw )
     plt.errorbar(Dub89_111[0], Dub89_111[1], yerr = Dub89_111[2], fmt = "bd", markersize = mrks)
     plt.errorbar(FTFHLP_95_111[0], FTFHLP_95_111[1], yerr = FTFHLP_95_111[2], fmt = "go", markersize = mrks)
     plt.errorbar(DT_88_111[0], DT_88_111[1], yerr = DT_88_111[2], fmt = "ys", markersize = mrks)
@@ -154,12 +186,6 @@ if __name__ == "__main__":
     plt.xlabel( "$E_P$ $[\mathrm{keV}/\mathrm{amu}]$", fontsize = lbl_size )
     plt.ylabel( "$\sigma_{11}$ $[10^{-16}\mathrm{cm}^2]$", fontsize = lbl_size )
 
-    #plt.legend( loc="best", fancybox=True, labelspacing = .2, numpoints=1 )
- 
-    #leg = plt.gca().get_legend()
-    #ltext  = leg.get_texts()
-    #plt.setp(ltext, fontsize = lgd_size)
- 
     ax = plt.gca()
     ax.xaxis.set_tick_params(which='both', width=2)
     ax.yaxis.set_tick_params(which='both', width=2)
@@ -174,8 +200,8 @@ if __name__ == "__main__":
 
     plt.plot( full[0],  full[3],  "k-",  linewidth = lw, label = "$\mathrm{Resp}$ $\mathrm{pETF}$" )
     plt.plot( part[0],  part[3],  "r:",  linewidth = lw, label = "$\mathrm{Resp}$ $\mathrm{nETF}$" )
-    plt.plot( petf[0],  petf[3],  "g--", linewidth = lw, label = "$\mathrm{pETF}$" )
-    plt.plot( netf[0],  netf[3],  "b-.", linewidth = lw, label = "$\mathrm{nETF}$" )
+    #plt.plot( petf[0],  petf[3],  "g--", linewidth = lw, label = "$\mathrm{pETF}$" )
+    #plt.plot( netf[0],  netf[3],  "b-.", linewidth = lw, label = "$\mathrm{nETF}$" )
     plt.errorbar(Dub89_012[0], Dub89_012[1], yerr = Dub89_012[2], fmt = "bd", markersize = mrks)
     plt.errorbar(FTFHLP_95_012[0], FTFHLP_95_012[1], yerr = FTFHLP_95_012[2], fmt = "go", markersize = mrks)
     plt.errorbar(DT_88_012[0], DT_88_012[1], yerr = DT_88_012[2], fmt = "ys", markersize = mrks)
@@ -186,12 +212,6 @@ if __name__ == "__main__":
 
     plt.xlabel( "$E_P$ $[\mathrm{keV}/\mathrm{amu}]$", fontsize = lbl_size )
     plt.ylabel( "$\sigma_{12}$ $[10^{-16}\mathrm{cm}^2]$", fontsize = lbl_size )
-
-    #plt.legend( loc="best", fancybox=True, labelspacing = .2, numpoints=1 )
- 
-    #leg = plt.gca().get_legend()
-    #ltext  = leg.get_texts()
-    #plt.setp(ltext, fontsize = lgd_size)
  
     ax = plt.gca()
     ax.xaxis.set_tick_params(which='both', width=2)
@@ -207,8 +227,8 @@ if __name__ == "__main__":
 
     plt.plot( full[0],  full[4],  "k-",  linewidth = lw, label = "$\mathrm{Resp}$ $\mathrm{pETF}$" )
     plt.plot( part[0],  part[4],  "r:",  linewidth = lw, label = "$\mathrm{Resp}$ $\mathrm{nETF}$" )
-    plt.plot( petf[0],  petf[4],  "g--", linewidth = lw, label = "$\mathrm{pETF}$" )
-    plt.plot( netf[0],  netf[4],  "b-.", linewidth = lw, label = "$\mathrm{nETF}$" )
+    #plt.plot( petf[0],  petf[4],  "g--", linewidth = lw, label = "$\mathrm{pETF}$" )
+    #plt.plot( netf[0],  netf[4],  "b-.", linewidth = lw, label = "$\mathrm{nETF}$" )
     plt.errorbar(Dub89_021[0], Dub89_021[1], yerr = Dub89_021[2], fmt = "bd", markersize = mrks)
     plt.errorbar(FTFHLP_95_021[0], FTFHLP_95_021[1], yerr = FTFHLP_95_021[2], fmt = "gd", markersize = mrks)
 
@@ -218,12 +238,6 @@ if __name__ == "__main__":
 
     plt.xlabel( "$E_P$ $[\mathrm{keV}/\mathrm{amu}]$", fontsize = lbl_size )
     plt.ylabel( "$\sigma_{21}$ $[10^{-16}\mathrm{cm}^2]$", fontsize = lbl_size )
-
-    #plt.legend( loc="best", fancybox=True, labelspacing = .2, numpoints=1 )
- 
-    #leg = plt.gca().get_legend()
-    #ltext  = leg.get_texts()
-    #plt.setp(ltext, fontsize = lgd_size)
  
     ax = plt.gca()
     ax.xaxis.set_tick_params(which='both', width=2)
@@ -239,8 +253,9 @@ if __name__ == "__main__":
 
     plt.plot( full[0],  full[5],  "k-",  linewidth = lw, label = "$\mathrm{Resp}$ $\mathrm{pETF}$" )
     plt.plot( part[0],  part[5],  "r:",  linewidth = lw, label = "$\mathrm{Resp}$ $\mathrm{nETF}$" )
-    plt.plot( petf[0],  petf[5],  "g--", linewidth = lw, label = "$\mathrm{pETF}$" )
-    plt.plot( netf[0],  netf[5],  "b-.", linewidth = lw, label = "$\mathrm{nETF}$" )
+    #plt.plot( petf[0],  petf[5],  "g--", linewidth = lw, label = "$\mathrm{pETF}$" )
+    #plt.plot( netf[0],  netf[5],  "b-.", linewidth = lw, label = "$\mathrm{nETF}$" )
+    plt.plot( GAG15s20[0], GAG15s20[1] * 0.5291772083**2, "g--", linewidth = lw )
     plt.errorbar(Dub89_120[0], Dub89_120[1], yerr = Dub89_120[2], fmt = "bd", markersize = mrks)
     plt.errorbar(FTFHLP_95_120[0], FTFHLP_95_120[1], yerr = FTFHLP_95_120[2], fmt = "go", markersize = mrks)
 
@@ -250,12 +265,6 @@ if __name__ == "__main__":
 
     plt.xlabel( "$E_P$ $[\mathrm{keV}/\mathrm{amu}]$", fontsize = lbl_size )
     plt.ylabel( "$\sigma_{20}$ $[10^{-16}\mathrm{cm}^2]$", fontsize = lbl_size )
-
-    #plt.legend( loc="best", fancybox=True, labelspacing = .2, numpoints=1 )
-
-    #leg = plt.gca().get_legend()
-    #ltext  = leg.get_texts()
-    #plt.setp(ltext, fontsize = lgd_size)
  
     ax = plt.gca()
     ax.xaxis.set_tick_params(which='both', width=2)
@@ -271,10 +280,10 @@ if __name__ == "__main__":
 
     plt.plot( full[0],  full[6],  "k-", linewidth = lw, label = "$\mathrm{Resp}$ $\mathrm{pETF}$" )
     plt.plot( part[0],  part[6],  "r:", linewidth = lw, label = "$\mathrm{Resp}$ $\mathrm{nETF}$" )
-    plt.plot( petf[0],  petf[6],  "g--", linewidth = lw, label = "$\mathrm{pETF}$" )
-    plt.plot( netf[0],  netf[6],  "b-.", linewidth = lw, label = "$\mathrm{nETF}$" )
+    #plt.plot( petf[0],  petf[6],  "g--", linewidth = lw, label = "$\mathrm{pETF}$" )
+    #plt.plot( netf[0],  netf[6],  "b-.", linewidth = lw, label = "$\mathrm{nETF}$" )
+    plt.plot( 1000 * SM03s01[0]/4, SM03s01[1] * 1E-2, "g--", linewidth = lw )
     plt.errorbar(Dub89_201[0], Dub89_201[1], yerr = Dub89_201[2], fmt = "bd", markersize = mrks)
-    #plt.errorbar(SSMSM_95_201[0], SSMSM_95_201[1], yerr = SSMSM_95_201[2], fmt = "m^", markersize = mrks)
 
     plt.xlim([8,1100])
     plt.ylim( ymin = 0 )
@@ -282,12 +291,6 @@ if __name__ == "__main__":
 
     plt.xlabel( "$E_P$ $[\mathrm{keV}/\mathrm{amu}]$", fontsize = lbl_size )
     plt.ylabel( "$\sigma_{01}$ $[10^{-16}\mathrm{cm}^2]$", fontsize = lbl_size )
-
-    #plt.legend( loc="best", fancybox=True, labelspacing = .2, numpoints=1 )
- 
-    #leg = plt.gca().get_legend()
-    #ltext  = leg.get_texts()
-    #plt.setp(ltext, fontsize = lgd_size)
  
     ax = plt.gca()
     ax.xaxis.set_tick_params(which='both', width=2)
@@ -303,8 +306,9 @@ if __name__ == "__main__":
 
     plt.plot( full[0],  full[7],  "k-",  linewidth = lw, label = "$\mathrm{Resp}$ $\mathrm{pETF}$" )
     plt.plot( part[0],  part[7],  "r:",  linewidth = lw, label = "$\mathrm{Resp}$ $\mathrm{nETF}$" )
-    plt.plot( petf[0],  petf[7],  "g--", linewidth = lw, label = "$\mathrm{pETF}$" )
-    plt.plot( netf[0],  netf[7],  "b-.", linewidth = lw, label = "$\mathrm{nETF}$" )
+    #plt.plot( petf[0],  petf[7],  "g--", linewidth = lw, label = "$\mathrm{pETF}$" )
+    #plt.plot( netf[0],  netf[7],  "b-.", linewidth = lw, label = "$\mathrm{nETF}$" )
+    plt.plot( 1000 * SM03s02[0]/4, SM03s02[1] * 1E-2, "g--", linewidth = lw )
     plt.errorbar(Dub89_102[0], Dub89_102[1], yerr = Dub89_102[2], fmt = "bd", markersize = mrks)
     plt.errorbar(SSMSM_11_102[0], SSMSM_11_102[1], yerr = SSMSM_11_102[2], fmt = "r+", markersize = mrks)
 
@@ -314,12 +318,6 @@ if __name__ == "__main__":
 
     plt.xlabel( "$E_P$ $[\mathrm{keV}/\mathrm{amu}]$", fontsize = lbl_size )
     plt.ylabel( "$\sigma_{02}$ $[10^{-16}\mathrm{cm}^2]$", fontsize = lbl_size )
-
-    #plt.legend( loc="best", fancybox=True, labelspacing = .2, numpoints=1 )
- 
-    #leg = plt.gca().get_legend()
-    #ltext  = leg.get_texts()
-    #plt.setp(ltext, fontsize = lgd_size)
  
     ax = plt.gca()
     ax.xaxis.set_tick_params(which='both', width=2)
@@ -335,8 +333,9 @@ if __name__ == "__main__":
 
     plt.plot( full[0],  full[8],  "k-", linewidth = lw, label = "$\mathrm{Resp}$ $\mathrm{pETF}$" )
     plt.plot( part[0],  part[8],  "r:", linewidth = lw, label = "$\mathrm{Resp}$ $\mathrm{nETF}$" )
-    plt.plot( petf[0],  petf[8],  "g--", linewidth = lw, label = "$\mathrm{pETF}$" )
-    plt.plot( netf[0],  netf[8],  "b-.", linewidth = lw, label = "$\mathrm{nETF}$" )
+    #plt.plot( petf[0],  petf[8],  "g--", linewidth = lw, label = "$\mathrm{pETF}$" )
+    #plt.plot( netf[0],  netf[8],  "b-.", linewidth = lw, label = "$\mathrm{nETF}$" )
+    plt.plot( 1000 * SM03s03[0]/4, SM03s03[1] * 1E-2, "g--", linewidth = lw )
     plt.errorbar(Dub89_003[0], Dub89_003[1], yerr = Dub89_003[2], fmt = "bd", markersize = mrks)
     plt.errorbar(SSMSM_11_003[0], SSMSM_11_003[1], yerr = SSMSM_11_003[2], fmt = "r+", markersize = mrks)
 
@@ -346,12 +345,6 @@ if __name__ == "__main__":
 
     plt.xlabel( "$E_P$ $[\mathrm{keV}/\mathrm{amu}]$", fontsize = lbl_size )
     plt.ylabel( "$\sigma{03}$ $[10^{-16}\mathrm{cm}^2]$", fontsize = lbl_size )
-
-    #plt.legend( loc="best", fancybox=True, labelspacing = .2, numpoints=1 )
- 
-    #leg = plt.gca().get_legend()
-    #ltext  = leg.get_texts()
-    #plt.setp(ltext, fontsize = lgd_size)
  
     ax = plt.gca()
     ax.xaxis.set_tick_params(which='both', width=2)
@@ -367,8 +360,8 @@ if __name__ == "__main__":
 
     plt.plot( full[0],  full[9],  "k-",  linewidth = lw, label = "$\mathrm{Resp}$ $\mathrm{pETF}$" )
     plt.plot( part[0],  part[9],  "r:",  linewidth = lw, label = "$\mathrm{Resp}$ $\mathrm{nETF}$" )
-    plt.plot( petf[0],  petf[9],  "g--", linewidth = lw, label = "$\mathrm{pETF}$" )
-    plt.plot( netf[0],  netf[9],  "b-.", linewidth = lw, label = "$\mathrm{nETF}$" )
+    #plt.plot( petf[0],  petf[9],  "g--", linewidth = lw, label = "$\mathrm{pETF}$" )
+    #plt.plot( netf[0],  netf[9],  "b-.", linewidth = lw, label = "$\mathrm{nETF}$" )
 
     plt.xlim([8, 1100])
     plt.xscale("log")
@@ -377,10 +370,6 @@ if __name__ == "__main__":
     plt.ylabel( "$\sigma_{00}$ $[10^{-16}\mathrm{cm}^2]$", fontsize = lbl_size )
 
     plt.legend( loc="best", fancybox=True, labelspacing = .2, numpoints=1 )
-
-    leg = plt.gca().get_legend()
-    ltext  = leg.get_texts()
-    plt.setp(ltext, fontsize = lgd_size)
  
     ax = plt.gca()
     ax.xaxis.set_tick_params(which='both', width=2)
@@ -396,8 +385,8 @@ if __name__ == "__main__":
 
     plt.plot( full[0],  full[10],  "k-",  linewidth = lw, label = "$\mathrm{Resp}$ $\mathrm{pETF}$" )
     plt.plot( part[0],  part[10],  "r:",  linewidth = lw, label = "$\mathrm{Resp}$ $\mathrm{nETF}$" )
-    plt.plot( petf[0],  petf[10],  "g--", linewidth = lw, label = "$\mathrm{pETF}$" )
-    plt.plot( netf[0],  netf[10],  "b-.", linewidth = lw, label = "$\mathrm{nETF}$" )
+    #plt.plot( petf[0],  petf[10],  "g--", linewidth = lw, label = "$\mathrm{pETF}$" )
+    #plt.plot( netf[0],  netf[10],  "b-.", linewidth = lw, label = "$\mathrm{nETF}$" )
 
     plt.xlim([8, 1100])
     plt.ylim( ymin = 0 )
@@ -407,10 +396,6 @@ if __name__ == "__main__":
     plt.ylabel( "$\sigma^{30}$ $[10^{-16}\mathrm{cm}^2]$", fontsize = lbl_size )
 
     plt.legend( loc="best", fancybox=True, labelspacing = .2, numpoints=1 )
- 
-    leg = plt.gca().get_legend()
-    ltext  = leg.get_texts()
-    plt.setp(ltext, fontsize = lgd_size)
  
     ax = plt.gca()
     ax.xaxis.set_tick_params(which='both', width=2)
