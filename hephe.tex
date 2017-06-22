@@ -56,7 +56,7 @@
    %
    two active electrons:
    %
-   \begin{equation} \label{012}
+   \begin{equation} \label{tpi012}
       \mathrm{He}^+ + \mathrm{He} \rightarrow \mathrm{He}^+ + \mathrm{He}^{2+} + 2e^-
    \end{equation}
    %
@@ -97,15 +97,82 @@
    GAG15}, the majority of which focus on single capture to the projectile [Eq.~\eqref{eq:tpi120}].
 
    We will begin our discussion with an overview of some relevant aspects of time-dependent density
-   functional theory in Sec.\ \ref{sec:tddft}. This will be followed by a description of the method used
+   functional theory in Sec.~\ref{sec:tddft}. This will be followed by a description of the method used
    to calculate a time-dependent exchange potential in Sec.~\ref{sec:xpot}. This section also includes
    some details of the two-center basis generator method which was used to solve for the one-particle
-   density. The results of our calculations are presented in Sec.~\ref{sec:disc}. Finally conclusions
-   drawn from these studies are offered in Sec.~\ref{sec:conc}.
+   density. The theory section closes with a description of the final-state analysis for extracting
+   the carious outcome probabilities [Sec.~\ref{sec:probs}]. The results of our calculations are
+   presented in Sec.~\ref{sec:disc}. Finally conclusions drawn from these studies are offered in
+   Sec.~\ref{sec:conc}.
 
    Atomic units ($\hbar = m_e = e = 1$) are used unless stated otherwise.
 
 \end{section}
+
+   \begin{figure}[htp]
+      \centering
+      \includegraphics[width = \linewidth]{./images/crossPlots/HepHe-111.eps}
+      \caption{Total Cross section for single ionization of the target.
+               Theoretical: p\textsc{etf} (solid line), n\textsc{etf} (dotted line), and
+                            \textsc{cdw-eis} of Miraglia \textit{et al}.~\cite{MG-10} (dashed line).
+               Experimental: diamonds~\cite{Dub-89}, circles~\cite{FTFHLP-95}, and squares~\cite{DT-88}.
+               \label{fig:cs111}}
+   \end{figure}
+
+   \begin{figure}[htp]
+      \centering
+      \includegraphics[width = \linewidth]{./images/crossPlots/HepHe-201.eps}
+      \caption{Total Cross section for single ionization of the projectile.
+               Theoretical: p\textsc{etf} (solid line),n\textsc{etf} (dotted line), and
+                            \textsc{ievm} of Sigaud \textit{et al}.~\cite{SM-03} (dashed line).
+               Experimental: diamonds~\cite{Dub-89}. \label{fig:cs201}}
+   \end{figure}
+
+   \begin{figure}[htp]
+      \centering
+      \includegraphics[width = \linewidth]{./images/crossPlots/HepHe-120.eps}
+      \caption{Total Cross section for single capture to the projectile.
+               Theoretical: p\textsc{etf} (solid line), n\textsc{etf} (dotted line), and
+                            \textsc{cdbw-4b} (post form) of Ghanbari-Adivi \textit{et al}.~\cite{GAG15}
+                            (dashed line).
+               Experimental: diamonds~\cite{Dub-89} and circles~\cite{FTFHLP-95}. \label{fig:cs120}}
+   \end{figure}
+
+   \begin{figure}[htp]
+      \centering
+      \includegraphics[width = \linewidth]{./images/crossPlots/HepHe-012.eps}
+      \caption{Total Cross section for double ionization of the target.
+               Theoretical: p\textsc{etf} (solid line) and n\textsc{etf} (dotted line).
+               Experimental: diamonds~\cite{Dub-89}, circles~\cite{FTFHLP-95}, and squares~\cite{DT-88}.
+               \label{fig:cs012}}
+   \end{figure}
+
+   \begin{figure}[htp]
+      \centering
+      \includegraphics[width = \linewidth]{./images/crossPlots/HepHe-102.eps}
+      \caption{Total Cross section for simultaneous single ionization of the target and projectile.
+               Theoretical: p\textsc{etf} (solid line), n\textsc{etf} (dotted line), and
+                            \textsc{ievm} of Sigaud \textit{et al}.~\cite{SM-03} (dashed line).
+               Experimental: diamonds~\cite{Dub-89} and crosses~\cite{SSMSM-11}. \label{fig:cs102}}
+   \end{figure}
+
+   \begin{figure}[htp]
+      \centering
+      \includegraphics[width = \linewidth]{./images/crossPlots/HepHe-021.eps}
+      \caption{Total Cross section for transfer ionization of the target.
+               Theoretical: p\textsc{etf} (solid line) and n\textsc{etf} (dotted line).
+               Experimental: diamonds~\cite{Dub-89} and circles~\cite{FTFHLP-95}. \label{fig:cs021}}
+   \end{figure}
+
+   \begin{figure}[htp]
+      \centering
+      \includegraphics[width = \linewidth]{./images/crossPlots/HepHe-003.eps}
+      \caption{Total Cross section simultaneous double target and single projectile ionization.
+               Theoretical: p\textsc{etf} (solid line), n\textsc{etf} (dotted line), and
+               \textsc{ievm} of Sigaud \textit{et al}.~\cite{SM-03} (dashed line).
+               Experimental: diamonds~\cite{Dub-89} and crosses~\cite{SSMSM-11}. \label{fig:cs003}}
+   \end{figure}
+
 
 \begin{section}{Theory \label{sec:theory}}
 
@@ -375,73 +442,66 @@
 
    \end{subsection}
 
+   \begin{subsection}{Final-state analysis \label{sec:probs}}
+
+      Of interest in any scattering problem is the probability of finding the system in some final state.
+      If we represent the state of being considered as $\ket{f_1 f_2 f_3}$ and the initial state of the
+      system propagated to some final time $t_f$ by $\ket{\varphi_{ \uparrow 1} \varphi_{\uparrow 2}
+      \varphi_{\downarrow 1} (t_f)}$ the exclusive probability to find the system in the given final
+      state at time $t_f$ will be given by
+      %
+      \begin{equation} \label{eq:finalProb}
+         P_{f_1 f_2 f_3}(t_f) = \left| \braket{ f_1 f_2 f_3 | \varphi_{ \uparrow 1} \varphi_{\uparrow 2}
+                                                \varphi_{\downarrow 1} (t_f) } \right|^2.
+      \end{equation}
+      %
+      If one assumes that both the propagated and final states can be represented as a single Slater
+      determinant then the probability in question becomes
+      %
+      \begin{equation} \label{eq:detProb}
+         P_{f_1 f_2 f_3}(t_f) = \det \left[ \gamma_{f f^\prime}(t_f) \right],
+      \end{equation}
+      %
+      where $\gamma_{f f^\prime}$ is the one-particle density matrix
+      %
+      \begin{equation} \label{eq:denmat}
+         \gamma_{f f^\prime}(t_f) = \sum\limits_{\sigma} \sum\limits_{j = 1}^{N_\sigma}
+                               \braket{f | \varphi_{\sigma j}(t_f)}
+                               \braket{\varphi_{\sigma j}(t_f) | f^\prime}.
+      \end{equation}
+      %
+      With the transition amplitudes $\braket{f | \varphi_{\sigma j}(t_f)}$ readily calculable from the
+      dynamics.
+
+      Alternatively, one could consider the probability to explicitly measure the states of some subset
+      of the total number of particles. These so called inclusive probabilities can be expressed in
+      terms of determinants of submatrices of the density matrix~\cite{inc-prob}.
+ 
+      In the current problem we are interested those probabilities which correspond to the outcome
+      channels of Eqs.~\eqref{eq:tpi111}-\eqref{eq:tpi003}. In such configurations we find $k$ particles
+      on the projectile, $l$ particles in the continuum, and $3 - k - l$ on the target ($1\leq k \leq 3$
+      and $1 \leq l \leq 3 - k$). The probabilities $p_{kl}$ may be calculated in terms of sums of
+      inclusive probabilities to find a given number of particles in the bound states of the target and
+      projectile by applying the machinery of~\cite{inc-prob} (see for example~\cite{incEx, mitsuko12,
+      gerald15}).
+
+   \end{subsection}
+
 \end{section}
 
 \begin{section}{Discussion \label{sec:disc}}
 
-   \begin{figure}[htp]
-      \centering
-      \includegraphics[width = \linewidth]{./images/crossPlots/HepHe-111.eps}
-      \caption{Total Cross section for single ionization of the target.
-               Theoretical: p\textsc{etf} (solid line), n\textsc{etf} (dotted line), and
-                            \textsc{cdw-eis} of Miraglia \textit{et al}.~\cite{MG-10} (dashed line).
-               Experimental: diamonds~\cite{Dub-89}, circles~\cite{FTFHLP-95}, and squares~\cite{DT-88}.
-               \label{fig:cs111}}
-   \end{figure}
+   With the probabilities in hand the total cross sections may then be calculated from
+   %
+   \begin{equation} \label{eq:cross}
+      \sigma_{kl} = 2 \pi \int_0^\infty b \, p_{kl}(b) \, \mathrm{d}b.
+   \end{equation}
 
-   \begin{figure}[htp]
-      \centering
-      \includegraphics[width = \linewidth]{./images/crossPlots/HepHe-201.eps}
-      \caption{Total Cross section for single ionization of the projectile.
-               Theoretical: p\textsc{etf} (solid line),n\textsc{etf} (dotted line), and
-                            \textsc{ievm} of Sigaud \textit{et al}.~\cite{SM-03} (dashed line).
-               Experimental: diamonds~\cite{Dub-89}. \label{fig:cs201}}
-   \end{figure}
-
-   \begin{figure}[htp]
-      \centering
-      \includegraphics[width = \linewidth]{./images/crossPlots/HepHe-120.eps}
-      \caption{Total Cross section for single capture to the projectile.
-               Theoretical: p\textsc{etf} (solid line), n\textsc{etf} (dotted line), and
-                            \textsc{cdbw-4b} (post form) of Ghanbari-Adivi \textit{et al}.~\cite{GAG15}
-                            (dashed line).(dashed line).
-               Experimental: diamonds~\cite{Dub-89} and circles~\cite{FTFHLP-95}. \label{fig:cs120}}
-   \end{figure}
-
-   \begin{figure}[htp]
-      \centering
-      \includegraphics[width = \linewidth]{./images/crossPlots/HepHe-012.eps}
-      \caption{Total Cross section for double ionization of the target.
-               Theoretical: p\textsc{etf} (solid line) and n\textsc{etf} (dotted line).
-               Experimental: diamonds~\cite{Dub-89}, circles~\cite{FTFHLP-95}, and squares~\cite{DT-88}.
-               \label{fig:cs012}}
-   \end{figure}
-
-   \begin{figure}[htp]
-      \centering
-      \includegraphics[width = \linewidth]{./images/crossPlots/HepHe-102.eps}
-      \caption{Total Cross section for simultaneous single ionization of the target and projectile.
-               Theoretical: p\textsc{etf} (solid line), n\textsc{etf} (dotted line), and
-                            \textsc{ievm} of Sigaud \textit{et al}.~\cite{SM-03} (dashed line).
-               Experimental: diamonds~\cite{Dub-89} and crosses~\cite{SSMSM-11}. \label{fig:cs102}}
-   \end{figure}
-
-   \begin{figure}[htp]
-      \centering
-      \includegraphics[width = \linewidth]{./images/crossPlots/HepHe-021.eps}
-      \caption{Total Cross section for transfer ionization of the target.
-               Theoretical: p\textsc{etf} (solid line) and n\textsc{etf} (dotted line).
-               Experimental: diamonds~\cite{Dub-89} and circles~\cite{FTFHLP-95}. \label{fig:cs021}}
-   \end{figure}
-
-   \begin{figure}[htp]
-      \centering
-      \includegraphics[width = \linewidth]{./images/crossPlots/HepHe-003.eps}
-      \caption{Total Cross section simultaneous double target and single projectile ionization.
-               Theoretical: p\textsc{etf} (solid line), n\textsc{etf} (dotted line), and
-               \textsc{ievm} of Sigaud \textit{et al}.~\cite{SM-03} (dashed line).
-               Experimental: diamonds~\cite{Dub-89} and crosses~\cite{SSMSM-11}. \label{fig:cs003}}
-   \end{figure}
+   In what follows all Results obtained by propagating the full \textsc{ks} orbitals in a potential
+   generated from the 1s-only orbital of Eq.~\eqref{eq:1sonly} that includes no electron translation
+   factors will be designated by n\textsc{etf}. Those obtained by an application of the same processes
+   using the 1s-only orbital, with partial \textsc{etf}'s, of Eq.~\eqref{eq:1sonlyetf} will be referred
+   to as p\textsc{etf}.
 
 \end{section}
 
