@@ -56,7 +56,7 @@
    %
    two active electrons:
    %
-   \begin{equation} \label{tpi012}
+   \begin{equation} \label{eq:tpi012}
       \mathrm{He}^+ + \mathrm{He} \rightarrow \mathrm{He}^+ + \mathrm{He}^{2+} + 2e^-
    \end{equation}
    %
@@ -108,71 +108,6 @@
    Atomic units ($\hbar = m_e = e = 1$) are used unless stated otherwise.
 
 \end{section}
-
-   \begin{figure}[htp]
-      \centering
-      \includegraphics[width = \linewidth]{./images/crossPlots/HepHe-111.eps}
-      \caption{Total Cross section for single ionization of the target.
-               Theoretical: p\textsc{etf} (solid line), n\textsc{etf} (dotted line), and
-                            \textsc{cdw-eis} of Miraglia \textit{et al}.~\cite{MG-10} (dashed line).
-               Experimental: diamonds~\cite{Dub-89}, circles~\cite{FTFHLP-95}, and squares~\cite{DT-88}.
-               \label{fig:cs111}}
-   \end{figure}
-
-   \begin{figure}[htp]
-      \centering
-      \includegraphics[width = \linewidth]{./images/crossPlots/HepHe-201.eps}
-      \caption{Total Cross section for single ionization of the projectile.
-               Theoretical: p\textsc{etf} (solid line),n\textsc{etf} (dotted line), and
-                            \textsc{ievm} of Sigaud \textit{et al}.~\cite{SM-03} (dashed line).
-               Experimental: diamonds~\cite{Dub-89}. \label{fig:cs201}}
-   \end{figure}
-
-   \begin{figure}[htp]
-      \centering
-      \includegraphics[width = \linewidth]{./images/crossPlots/HepHe-120.eps}
-      \caption{Total Cross section for single capture to the projectile.
-               Theoretical: p\textsc{etf} (solid line), n\textsc{etf} (dotted line), and
-                            \textsc{cdbw-4b} (post form) of Ghanbari-Adivi \textit{et al}.~\cite{GAG15}
-                            (dashed line).
-               Experimental: diamonds~\cite{Dub-89} and circles~\cite{FTFHLP-95}. \label{fig:cs120}}
-   \end{figure}
-
-   \begin{figure}[htp]
-      \centering
-      \includegraphics[width = \linewidth]{./images/crossPlots/HepHe-012.eps}
-      \caption{Total Cross section for double ionization of the target.
-               Theoretical: p\textsc{etf} (solid line) and n\textsc{etf} (dotted line).
-               Experimental: diamonds~\cite{Dub-89}, circles~\cite{FTFHLP-95}, and squares~\cite{DT-88}.
-               \label{fig:cs012}}
-   \end{figure}
-
-   \begin{figure}[htp]
-      \centering
-      \includegraphics[width = \linewidth]{./images/crossPlots/HepHe-102.eps}
-      \caption{Total Cross section for simultaneous single ionization of the target and projectile.
-               Theoretical: p\textsc{etf} (solid line), n\textsc{etf} (dotted line), and
-                            \textsc{ievm} of Sigaud \textit{et al}.~\cite{SM-03} (dashed line).
-               Experimental: diamonds~\cite{Dub-89} and crosses~\cite{SSMSM-11}. \label{fig:cs102}}
-   \end{figure}
-
-   \begin{figure}[htp]
-      \centering
-      \includegraphics[width = \linewidth]{./images/crossPlots/HepHe-021.eps}
-      \caption{Total Cross section for transfer ionization of the target.
-               Theoretical: p\textsc{etf} (solid line) and n\textsc{etf} (dotted line).
-               Experimental: diamonds~\cite{Dub-89} and circles~\cite{FTFHLP-95}. \label{fig:cs021}}
-   \end{figure}
-
-   \begin{figure}[htp]
-      \centering
-      \includegraphics[width = \linewidth]{./images/crossPlots/HepHe-003.eps}
-      \caption{Total Cross section simultaneous double target and single projectile ionization.
-               Theoretical: p\textsc{etf} (solid line), n\textsc{etf} (dotted line), and
-               \textsc{ievm} of Sigaud \textit{et al}.~\cite{SM-03} (dashed line).
-               Experimental: diamonds~\cite{Dub-89} and crosses~\cite{SSMSM-11}. \label{fig:cs003}}
-   \end{figure}
-
 
 \begin{section}{Theory \label{sec:theory}}
 
@@ -436,6 +371,11 @@
                      + a^{\sigma j}_P  e^{\frac{i v_\mathrm{rel} z \cos \theta}{2}}\chi^{0}_{P1}.
       \end{equation}
       %
+      This will offer at least some of the correction provided by the full \textsc{etf}. Unfortunately
+      As $z$ approaches zero the partial \textsc{etf} will tend to one, meaning that when the target and
+      projectile are at their closest, the most active region of the collision, no \textsc{etf} will be
+      present. 
+      
       Regardless of which option is chosen it is important that $V_\mathrm{H}$ be determined with the
       same set of orbitals used in the calculation of $v_\mathrm{x}^\sigma$, preserving the precise
       cancellation of the self interaction present in the Hartree potential.
@@ -491,6 +431,69 @@
 
 \begin{section}{Discussion \label{sec:disc}}
 
+   \begin{figure}[t]
+      \centering
+      \includegraphics[width = \linewidth]{./images/crossPlots/HepHe-111.eps}
+      \caption{Total Cross section for single ionization of the target.
+               Theoretical: p\textsc{etf} (solid line), n\textsc{etf} (dotted line), and
+                            \textsc{cdw-eis} of Miraglia \textit{et al}.~\cite{MG-10} (dashed line).
+               Experimental: diamonds~\cite{Dub-89}, circles~\cite{FTFHLP-95}, and squares~\cite{DT-88}.
+               \label{fig:cs111}}
+   \end{figure}
+
+   \begin{figure}[t]
+      \centering
+      \includegraphics[width = \linewidth]{./images/crossPlots/HepHe-201.eps}
+      \caption{Total Cross section for single ionization of the projectile.
+               Theoretical: p\textsc{etf} (solid line),n\textsc{etf} (dotted line), and
+                            \textsc{ievm} of Sigaud \textit{et al}.~\cite{SM-03} (dashed line).
+               Experimental: diamonds~\cite{Dub-89}. \label{fig:cs201}}
+   \end{figure}
+
+   \begin{figure}[t]
+      \centering
+      \includegraphics[width = \linewidth]{./images/crossPlots/HepHe-120.eps}
+      \caption{Total Cross section for single capture to the projectile.
+               Theoretical: p\textsc{etf} (solid line), n\textsc{etf} (dotted line), and
+                            \textsc{cdbw-4b} (post form) of Ghanbari-Adivi \textit{et al}.~\cite{GAG15}
+                            (dashed line).
+               Experimental: diamonds~\cite{Dub-89} and circles~\cite{FTFHLP-95}. \label{fig:cs120}}
+   \end{figure}
+
+   \begin{figure}[t]
+      \centering
+      \includegraphics[width = \linewidth]{./images/crossPlots/HepHe-012.eps}
+      \caption{Total Cross section for double ionization of the target.
+               Theoretical: p\textsc{etf} (solid line) and n\textsc{etf} (dotted line).
+               Experimental: diamonds~\cite{Dub-89}, circles~\cite{FTFHLP-95}, and squares~\cite{DT-88}.
+               \label{fig:cs012}}
+   \end{figure}
+
+   \begin{figure}[t]
+      \centering
+      \includegraphics[width = \linewidth]{./images/crossPlots/HepHe-021.eps}
+      \caption{Total Cross section for transfer ionization of the target.
+               Theoretical: p\textsc{etf} (solid line) and n\textsc{etf} (dotted line).
+               Experimental: diamonds~\cite{Dub-89} and circles~\cite{FTFHLP-95}. \label{fig:cs021}}
+   \end{figure}
+   \begin{figure}[t]
+      \centering
+      \includegraphics[width = \linewidth]{./images/crossPlots/HepHe-102.eps}
+      \caption{Total Cross section for simultaneous single ionization of the target and projectile.
+               Theoretical: p\textsc{etf} (solid line), n\textsc{etf} (dotted line), and
+                            \textsc{ievm} of Sigaud \textit{et al}.~\cite{SM-03} (dashed line).
+               Experimental: diamonds~\cite{Dub-89} and crosses~\cite{SSMSM-11}. \label{fig:cs102}}
+   \end{figure}
+
+   \begin{figure}[t]
+      \centering
+      \includegraphics[width = \linewidth]{./images/crossPlots/HepHe-003.eps}
+      \caption{Total Cross section simultaneous double target and single projectile ionization.
+               Theoretical: p\textsc{etf} (solid line), n\textsc{etf} (dotted line), and
+               \textsc{ievm} of Sigaud \textit{et al}.~\cite{SM-03} (dashed line).
+               Experimental: diamonds~\cite{Dub-89} and crosses~\cite{SSMSM-11}. \label{fig:cs003}}
+   \end{figure}
+
    With the probabilities in hand the total cross sections may then be calculated from
    %
    \begin{equation} \label{eq:cross}
@@ -502,7 +505,116 @@
    factors will be designated by n\textsc{etf}. Those obtained by an application of the same processes
    using the 1s-only orbital, with partial \textsc{etf}'s, of Eq.~\eqref{eq:1sonlyetf} will be referred
    to as p\textsc{etf}.
+   
+   Total cross sections for the processes described in
+   Eqs.~\eqref{eq:tpi111}-\eqref{eq:tpi003} are presented in Figs.~\ref{fig:cs111}-\ref{fig:cs003}.
+   Where available the results of the current work are compared with calculations of other groups. It
+   should be noted that only those calculations that describe the system quantum mechanically were
+   considered, that is to say works that employ approaches such as the classical trajectory Monte Carlo
+   method are not included.
 
+   We begin the discussion by considering single target ionization the process of Eq.~\eqref{eq:tpi111}.
+   The results for this channel, $\sigma_{11}$ are presented in Fig.~\ref{fig:cs111}. Both n\textsc{etf}
+   and p\textsc{etf} are in good agreement with experiment throughout the full range of impact energies.
+   As impact energy ($E_P = \frac{1}{2} m_\textrm{He} V$) increases a slight gap opens between the two.
+   This trend is as one would expect due to the fact the \textsc{etf}'s should become more relevant as
+   the relative velocity between target and projectile increases. The slightly lower values for the
+   p\textsc{etf} version above 200~keV/amu make it a better fit to experiment. The underestimation of
+   both curves below the peak may be due to correspond almost exactly with the region where
+   $\sigma_{02}$ results begin to rise above the experimental results [see Fig.~\ref{fig:cs120}].
+
+   Also displayed in Fig.~\ref{fig:cs111} are the Continuum-Distorted-Wave Eikonal-Initial-State
+   approximation (\textsc{cdw-eis}) results of Miraglia \textit{et al}.~\cite{MG-10}. These results seem
+   to compliment the results of the present work through the majority of the impact energy range. One
+   notable exception to this is the slightly higher cross section maximum however, as there is a fairly
+   large spread in the experimental data around this region it is difficult to say which is more
+   correct. The results of Miraglia \textit{et al}.\ also begin to diverge as approaches lower impact
+   energies. This feature is likely due in large part the perturbative nature of \textsc{cdw-eis} which
+   becomes less reliable as one decreases the impact energy.
+
+   Next, we consider the results for $\sigma_{01}$ [Eq.~\eqref{eq:tpi201}] shown in Fig.~\ref{fig:cs201}.
+   AS with the previous channel both n\textsc{etf} and p\textsc{etf} results are in good agreement with
+   the experiment where it is available. Also continuing the trend seen in the $\sigma_{11}$ results
+   both models begin essentially equal at low impact energies and diverge as $E_P$ increases. Both
+   models begin to over estimate the data above the peak around 200~keV/amu. Once again the slightly
+   lower p\textsc{etf} results are in better agreement with experiment. The slight unphysical structures
+   in the curves below 40 keV/amu seem to correspond with the peeks of $\sigma_{00}$ channel (not
+   pictured here). This issue will be discussed in greater detail below.
+
+   These calculations have been compared with the independent event model (\textsc{ievm}) results of
+   Sigaud \textit{et al}.~\cite{SM-03}. Their values seem to be in much better agreement with experiment
+   in the high energy range then either n\textsc{etf} or p\textsc{etf} models. This can be easily
+   explained the presence of correlation in these calculations. In particular, Sigaud \textit{et al}.\
+   claim to capture the effects of antiscreening, the direct interaction between target and projectile
+   electrons, which becomes increasingly import for projectile ionization processes at larger impact
+   energies. As the results of the current work are those of an independent electron model
+   (\textsc{iem}) they make no effort to capture any correlation effects.
+
+   For the results of single electron capture to the target, the process of Eq.~\eqref{eq:tpi120}
+   depicted in Fig.~\ref{fig:cs120}, both n\textsc{etf} and p\textsc{etf} models are essentiall
+   identical. This is what one would hope for as they are in very good agreement with experiment in the
+   entire range of impact energies. An explanation of the slight discrepancy between theory and
+   experiment in the 50-150~keV/amu interval is offered by a comparison with the four-body Coulomb–Born
+   distorted wave approximation (\textsc{cdbw-4b}) results of Ghanbari-Adivi
+   \textit{et al}.~\cite{GAG15}. The correlation effects included in this model point to the slight rise
+   in cross section being related to either the fact that we have employed an \textsc{iem} approximation
+   or a failure of the partial \textsc{etf}.
+
+   The later explanation may provide a more satisfying solution to this problem. One would expect that
+   capture processes should be dominate by the contributions of slow and close collisions. The regions
+   where the n/p\textsc{etf} models start to diverge from experiment is approximately the region where
+   both models begin to diverge, that is the lowest energies where \textsc{etf}'s are important.
+   Additionally they begin to agree with experiment once the cross sections begin to rapidly approach
+   zero, for fast collisions. This would seem to be evidence that correct \textsc{etf}'s are important
+   for capture processes (a fact that should be at least intuitively obvious).
+
+   A few words should be spent addressing the choice for the theoretical calculation compared against.
+   Unlike other channels there exist relatively large number works to select from that fit the criteria
+   listed above. As the majority of these belong to a family of related perturbative
+   models~\cite{Mancev96, BOC05, Mancev-07, MG-10, NTC11, GG-12b, GAG15} the latest, that of
+   Ghanbari-Adivi \textit{et al}.\ was chosen.
+
+   With the single electron processes taken care of double target ionization, Eq.~\eqref{eq:tpi012},
+   the first of the two-electron processes will be considered next. The results for this channel are
+   presented in Fig.~\ref{fig:cs012}. As with previous channels both n\textsc{etf} and p\textsc{etf}
+   results appear to be very similar with a slight edge going to the p\textsc{etf} model's marginally
+   lower results above 100~keV/amu. Both models seem to shift the peak in the cross section to higher
+   impact energy than experiment would suggest is correct. As one would expect from an \textsc{iem}
+   the two models exagerate double ionization. As there no previous works fitting the conditions for
+   inclusion list earlier little else can be concluded from about the results of the present work.
+
+   Another channel where the literature lacks a proper touchstone is that of transfer ionization\
+   [Eq.~\eqref{eq:tpi021}]. The trends for $\sigma_{21}$ are very similar to those of $\sigma_{12}$.
+   As with the previously discussed process both models are above experiment and shift the experimental
+   peak to a higher impact energy. The only significant difference is that this is one of the few
+   channels where the n\textsc{etf} model is in slightly better agreement with experiment then the
+   p\textsc{etf}. The flattening of the curves below 20~keV/amu are an artifact of the \textsc{tc-bgm}
+   becoming less reliable at the lowest impact energies.
+
+   The last two-electron processes is for simultaneous single ionization of the target and projectile,
+   Eq.~\eqref{eq:tpi102}. The results for our n\textsc{etf} and p\textsc{etf} models are presented in
+   Fig.~\ref{fig:cs102}. These results both follow the trend of the data quite closely, arguably
+   matching the peak in the experimental cross sections. This channel is one of the only two where
+   the n\textsc{etf} model has as slight egde over the results of the p\textsc{etf}. Unfortunately they
+   fall below experiment for the majority of the impact energy range shown.
+
+   A comparison with the \textsc{ievm} of Sigaud \textit{et al}.\ explain this fact. As mentioned above
+   the region above the cross section peak at around 150~keV/amu is the range where antiscreening
+   dominates projectile ionization processes. Sigaud \textit{et al}.'s efforts to capture antiscreening
+   see their results fall within experiment for their entire extent. Encouragingly, if one were to
+   extend the curve of Sigaud \textit{et al}.\ it would seem to overlap with the results of the present
+   work.
+
+   Finally we will consider the sole three electron process, simultaneous double target and single
+   projectile ionization [Eq.~\eqref{eq:tpi003}]. The results, presented in Fig.~\ref{fig:cs003}, again
+   follow the general trends found in the previously discussed channels; overestimation of the cross
+   section peak and a slightly better showing for the p\textsc{etf} model over the results of the
+   n\textsc{etf} model. Unlike for previous channels our results are in better agreement with experiment
+   than those of Sigaud \textit{et al}.\ which over estimate the cross sections to a greater extent and
+   over a larger impact energy range. As in previous channels the under estimation of our cross sections
+   at larger impact energies may be attributed to correlation effects, in particular, to antiscreening
+   which  Sigaud \textit{et al}.\ seem to exaggerate in this channel.
+ 
 \end{section}
 
 \begin{section}{Conclusions \label{sec:conc}}

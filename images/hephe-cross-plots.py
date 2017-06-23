@@ -364,6 +364,7 @@ if __name__ == "__main__":
     #plt.plot( netf[0],  netf[9],  "b-.", linewidth = lw, label = "$\mathrm{nETF}$" )
 
     plt.xlim([8, 1100])
+    plt.ylim( ymin = 0 )
     plt.xscale("log")
 
     plt.xlabel( "$E_P$ $[\mathrm{keV}/\mathrm{amu}]$", fontsize = lbl_size )
