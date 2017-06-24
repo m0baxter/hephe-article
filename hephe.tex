@@ -25,7 +25,16 @@
 \date{\today}
 
 \begin{abstract}
-   !`Empty!
+
+   Theoretical total cross section results for all ionization/capture processes in the
+   He\textsuperscript{+}-He collision system are presented in the approximate impact energy range
+   10-1000~keV/amu. Calculations were performed with in the framework of time-dependent spin-density
+   functional theory. The Krieger-Li-Iafrate approximation was used to determine an accurate 
+   exchange-correlation potential in the exchange-only limit. The results of two models, one where
+   electron translation factors are ignore and another where partial electron translation factors are
+   included, have been compared with available experimental data as well as a selection of previous
+   theoretical calculations.
+
 \end{abstract}
 
 \pacs{31.15.ee, 34.50.Fa, 34.10.+x, 34.70.+e (Maybe\dots)} %nnnote: probably change this
@@ -633,7 +642,7 @@
    $p_{01}$ and $p_{11}$ respectively. This solution may provide a correction to some of the
    underestimation of $sigma_{01}$ around 40~keV/amu where $sigma_{30}$ peaks at approximately
    $0.14 \times 10^{-16}$ cm\textsuperscript{-16}, it would exacerbate the problems apparent as $E_P$
-   approaches 10~keV/amu. More concerning, $\sigma_{00}$ is on the order of $sigma_{01}$. Incorporating
+   approaches 10~keV/amu. More concerning, $\sigma_{00}$ is on the order of $i\sigma_{01}$. Incorporating
    this into $\sigma_{01}$ would effectively double its value for the lower impact energy range. This
    leaves one with the second option, to put the extra probabilities into $p_{10}$. In this case none
    of the results presented would be affected.
@@ -654,6 +663,32 @@
 \end{section}
 
 \begin{section}{Conclusions \label{sec:conc}}
+
+   In this work we have presented an investigation of the He\textsuperscript{+}-He collision within 
+   time-dependent spin-density functional theory under the constraints of the exchange-only approximation.
+   An accurate time-dependent exchange potential was determined through the application of the \textsc{kli}
+   approximation. Total cross section results for all physical outcome channels were then offered in the
+   approximate impact energy of 10-1000~keV/amu for two models. One in which electron translation factors
+   were ignored and a second model where partial \textsc{etf}'s were used. The results of both models are
+   in good agreement with experiment. Additionally, the current work is the only purely quantum mechanical
+   approach which captures all outcome channels over such a wide range of impact energies.
+
+   With out diminishing the results of this work it is necessary to highlight a few limitations and where
+   the results may be improved in future iterations. First the limitation of the implementation of the 
+   \textsc{kli} functional to systems of cylindrical symmetry is the impetus for both the 1s-only approximation
+   as well as the need to consider both the n\textsc{etf} and p\textsc{etf} models. Future applications of
+   the procedure laid out in this work would benefit greatly from a more robust implementation of the \textsc{kli}
+   functional.
+
+   Comparisons our results with the theoretical work of other groups points to the fact that the calculations
+   would also gain much from the inclusion of correlation effects. Treating the x-only as a proof of concept
+   there is noting, apart from the added complexity of the calculations, precluding the addition of dynamic
+   correlation through the application of any number of ground-state correlation functionals in future.
+   More difficult would be the inclusion of functional correlation effects. In order to move beyond the
+   \textsc{iem} single Slater determinant description of outcome probabilities would necessitate the adaption
+   of a model similar to that of Wilken and Bauer~cite{wb} beyond that of Ref.~\cite{p-he2p-he} to explicitly
+   spin-polarized systems.
+
 \end{section}
 
 \begin{acknowledgments}
