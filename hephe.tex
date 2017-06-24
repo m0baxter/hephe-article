@@ -203,14 +203,15 @@
 
       Splitting $v_\mathrm{xc}$ into an exchange and correlation part facilitates the application of the
       x-only approximation where the correlation potential is taken to be zero ($v^\sigma_\mathrm{c} =
-      0$). Within this approximation $v^\sigma_\mathrm{x}$ may be determined exactly via the optimized
-      potential method~\cite{opm1, opm2, tdopm}. The complexity of the \textsc{opm} make it difficult
-      prohibitively difficult to implement in general. As a secondary option one my instead make use of
-      the Krieger-Li-Iafrate approximation~\cite{klieq, tdkli1, tdkli2} (\textsc{kli}). In many
-      situations potentials generated using \textsc{kli} are numerically indistinguishable from those
-      produced by the full \textsc{opm}. The success of the \textsc{kli} is due to the fact that it
-      preserves several properties of the exact potential. In particular \textsc{kli} maintains the
-      correct asymptotics
+      0$). Such a model which ignores dynamic correlation is usually referred to as an independent
+      electron model (\textsc{iem}). Within this approximation $v^\sigma_\mathrm{x}$ may be determined
+      exactly via the optimized potential method~\cite{opm1, opm2, tdopm}. The complexity of the
+      \textsc{opm} make it difficult prohibitively difficult to implement in general. As a secondary
+      option one my instead make use of the Krieger-Li-Iafrate approximation~\cite{klieq, tdkli1, tdkli2}
+      (\textsc{kli}). In many situations potentials generated using \textsc{kli} are numerically
+      indistinguishable from those produced by the full \textsc{opm}. The success of the \textsc{kli} is
+      due to the fact that it preserves several properties of the exact potential. In particular
+      \textsc{kli} maintains the correct asymptotics
       %
       \begin{equation} \label{eq:asymp}
          \lim\limits_{r \rightarrow \infty} v_\mathrm{x}^\sigma (\mathbf{r}) = -\frac{1}{r}.
@@ -411,7 +412,8 @@
       \end{equation}
       %
       With the transition amplitudes $\braket{f | \varphi_{\sigma j}(t_f)}$ readily calculable from the
-      dynamics.
+      dynamics. A model of this type which ignores the socalled functional correlations is consistent with
+      an \textsc{iem} description.
 
       Alternatively, one could consider the probability to explicitly measure the states of some subset
       of the total number of particles. These so called inclusive probabilities can be expressed in
@@ -614,7 +616,41 @@
    over a larger impact energy range. As in previous channels the under estimation of our cross sections
    at larger impact energies may be attributed to correlation effects, in particular, to antiscreening
    which  Sigaud \textit{et al}.\ seem to exaggerate in this channel.
- 
+
+   In to the outcome channels discussed above there are three additional processes. One, $\sigma_{10}$,
+   has been left of as it involves no charge transfer. The other two, $\sigma_{00}$ and $\sigma_{30}$,
+   involve all three electron coming to rest on either the target or the projectile. As was pointed out
+   in the introduction these channels should not be considered due in part to the instability of the
+   He\textsuperscript{-} ion and the fact that production cross sections for these configuration should
+   be negligible. While modeling the initial and final states of the system as single Slater determinants
+   accounts for Pauli exclusion precludes all three electrons from occupying the ground state there is
+   nothing in the model to stop additional electron from capturing and remaining in excited states. The
+   only recourse, short of implementing a model which contains at least some functional correlation, is
+   to artificially redistribute the probability from $p_{00}$ and $p_{30}$ into other channels.
+
+   Two options immediately present themselves. The first possibility is to feed the extra probability
+   into the corresponding ionization channels. In other words, $p_{00}$ and $p_{30}$ would augment
+   $p_{01}$ and $p_{11}$ respectively. This solution may provide a correction to some of the
+   underestimation of $sigma_{01}$ around 40~keV/amu where $sigma_{30}$ peaks at approximately
+   $0.14 \times 10^{-16}$ cm\textsuperscript{-16}, it would exacerbate the problems apparent as $E_P$
+   approaches 10~keV/amu. More concerning, $\sigma_{00}$ is on the order of $sigma_{01}$. Incorporating
+   this into $\sigma_{01}$ would effectively double its value for the lower impact energy range. This
+   leaves one with the second option, to put the extra probabilities into $p_{10}$. In this case none
+   of the results presented would be affected.
+
+   One last point must be mentioned before closing this discussion. Above 500~keV/amu several of the cross
+   section curves exhibit minor spurious structures. These are the result of numerical issues that, above
+   this impact energy, limit the minimum possible impact parameter for which the calculations produce
+   results from 0.1~a.u.\ below 500~keV/amu gradually to 0.8~a.u.\ at the 1000~kev/amu. In
+   Eq.~\eqref{eq:cross} the integrandi, $b \, p(b)$, is approximated by a cubic spine which is, in turn,
+   integrate to arrive at a cross section. The structure of the integrand means that so long as $p(0)$ is
+   finite its value is irrelevant and we always know the integrand at $b = 0$. In the best case lower bound
+   on the error of a cubic spline will scale to the third power in the largest step between
+   knots~\cite{spline-err}. The step size factor in the error bound then increases from 0.001 to 0.512.
+   It is this decrease in the accuracy of the interpolation which results in the minor structures above
+   500~keV/amu. The merging of the n\textsc{etf} and p\textsc{etf} curves in the high energy limit for some
+   channels.
+
 \end{section}
 
 \begin{section}{Conclusions \label{sec:conc}}
