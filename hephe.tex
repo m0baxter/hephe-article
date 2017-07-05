@@ -13,7 +13,8 @@
 
 \begin{document}
 
-\title{Ceci n'est pas un titre}
+\title{A time-dependent spin-density functional theory description of He\textsuperscript{+}-He
+       collisions}
 \author{Matthew Baxter}
 \email[]{baxterma@yorku.ca}
 \author{Tom Kirchner}
@@ -28,12 +29,12 @@
 
    Theoretical total cross section results for all ionization/capture processes in the
    He\textsuperscript{+}-He collision system are presented in the approximate impact energy range
-   10-1000~keV/amu. Calculations were performed with in the framework of time-dependent spin-density
+   10-1000~keV/amu. Calculations were performed within the framework of time-dependent spin-density
    functional theory. The Krieger-Li-Iafrate approximation was used to determine an accurate 
    exchange-correlation potential in the exchange-only limit. The results of two models, one where
-   electron translation factors are ignore and another where partial electron translation factors are
-   included, have been compared with available experimental data as well as a selection of previous
-   theoretical calculations.
+   electron translation factors in the orbitals used to calculate the potential are ignored and another
+   where partial electron translation factors are included, are compared with available experimental
+   data as well as a selection of previous theoretical calculations.
 
 \end{abstract}
 
@@ -43,10 +44,12 @@
 
 \begin{section}{Introduction \label{sec:intro}}
 
-   Atomic collision systems are often explored as testbeds for few-electron quantum dynamics. The
-   general collision system carries active electrons on both the target and projectile. The simplest
+   The general collision system carries active electrons on both the target and projectile. The simplest
    generic collision system consists of a target with two electrons and a single electron on the
    projectile. A prototypical example from this class of problem is the He\textsuperscript{+}-He system.
+   A popular alternative is to use an atomic hydrogen target (see for example~\cite{hEx1, hEx2}).
+   However, in He\textsuperscript{+}-H collisions care must be taken when treating the distinct
+   spin-singlet and triplet initial states~\cite{heph}.
 
    A variety of charge transfer processes are possible can occur as a result of these collisions. The
    processes can be broadly categorized into those that involve one active electron:
@@ -83,7 +86,7 @@
    \end{equation}
    %
    Additionally there is the channel where no charges are transferred and the two channels that result
-   in the production of He\textsuperscript{-}. From the perspective of theory, the later is unphysical
+   in the production of He\textsuperscript{-}. From the perspective of theory, the latter is unphysical
    due to the finite lifetime of even the most stable species of the negative helium
    ion~\cite{neghelife}. From the point of view of experiment He\textsuperscript{-} production
    may be controlled for~\cite{metahe} and cross sections can even be made negligible~\cite{neghe-neg}.
@@ -97,13 +100,15 @@
 
    Experimental results for the various outcome channels over a large range of impact
    energies~\cite{BS58, HN78, HSE78, dCFdP88, DT-88, Dub-89, ASL91, FTFHLP-95, SSMSM-11} provide a
-   useful benchmark for this problem. Results can also be compared with some of the theoretical work of
-   other groups. These calculations employ a variety of methods including classical models like the
-   over the barrier model~\cite{CC-07}, Bohr–Lindhard model~\cite{DYC-08, DLZ-12}, and the classical
+   useful benchmark for this problem. Results can also be compared with the theoretical work of other
+   groups. These calculations employ a variety of methods including classical models such as the over
+   the barrier model~\cite{CC-07}, Bohr–Lindhard model~\cite{DYC-08, DLZ-12}, and the classical
    trajectory Monte Carlo method~\cite{GMZ17}. Quantum mechanical calculations have been carried out
    using the local plasma approximation~\cite{MMA03}, the independent event model~\cite{SM-03}, as well
    as a plethora of perturbative calculations~\cite{Mancev96, BOC05, Mancev-07, MG-10, NTC11, GG-12b,
-   GAG15}, the majority of which focus on single capture to the projectile [Eq.~\eqref{eq:tpi120}].
+   GAG15}, the majority of which focus on single capture to the projectile [Eq.~\eqref{eq:tpi120}]. A
+   calculation that would address all physical outcome channels is still outstanding. One of the primary
+   objectives of the present work is to fill this void.
 
    We will begin our discussion with an overview of some relevant aspects of time-dependent density
    functional theory in Sec.~\ref{sec:tddft}. This will be followed by a description of the method used
@@ -123,10 +128,10 @@
    \begin{subsection}{TDDFT \label{sec:tddft}}
 
       A system of $N$ particles may be described by an $N$-particle wave function $\Psi(t)$ whose
-      evolution is governed by the time-dependent Shr\"{o}dinger equation (\textsc{tdse})
+      evolution is governed by the time-dependent Schr\"{o}dinger equation (\textsc{tdse})
       %
       \begin{equation} \label{eq:tdse}
-         i \frac{\mathrm{d} \Psi(t)}{\mathrm{d}t} = \hat{H}(t),
+         i \frac{\mathrm{d} \Psi(t)}{\mathrm{d}t} = \hat{H}(t) \Psi(t),
       \end{equation}
       %
       with a Hamiltonian $\hat{H}$ which may be written as
@@ -144,7 +149,7 @@
       %
       \begin{equation} \label{eq:dendef}
          n(\mathbf{r},t) = N \sum\limits_{\sigma} \int \mathrm{d}^3 r_2 \dots \mathrm{d}^3 r_N \,
-                            \left| \Psi(\mathbf{x}_i,t) \right|^2
+                            \left| \Psi(\mathbf{x}_1,\dots, \mathbf{x}_N,t) \right|^2
       \end{equation}
       %
       and the external potential $\hat{V}_\mathrm{ext}$, where $x_i = (\mathbf{r}_i, \sigma_i)$ label
@@ -165,27 +170,29 @@
       %
       \begin{equation} \label{eq:ksden}
          n(\mathbf{r},t) = \sum\limits_\sigma \sum\limits_{j=1}^{N_\sigma}
-                           \left| \varphi_{j\sigma} \right|^2.
+                           \left| \varphi_{j\sigma}(\mathbf{r},t) \right|^2.
       \end{equation}
       
-      In Eq.~\eqref{eq:tdks} $n_\sigma$ are the spin-up/down one-particle densities given by
+      In Eq.~\eqref{eq:tdks} $n_\sigma$, $\sigma \in \{ \uparrow, \downarrow \}$ are the spin-up/down
+      one-particle densities given by
       %
       \begin{equation} \label{eq:spinden}
          n_\sigma = \sum\limits_{j=1}^{N_\sigma} \left| \varphi_{j\sigma} \right|^2,
       \end{equation}
       %
-      $N_\sigma$ is the number of particles of a given spin $\sigma$, and $v^\sigma_\textsc{ks}$ is the
-      Kohn-Sham potential. The potential may be separated into several simpler objects
+      $N_\sigma$ is the number of particles of a given spin projection $\sigma$, and
+      $v^\sigma_\textsc{ks}$ is the Kohn-Sham potential. The potential may be decomposed into several
+      simpler objects
       %
       \begin{equation} \label{eq:vks}
          v^\sigma_\mathrm{\textsc{ks}}[n_\uparrow, n_\downarrow] = v_\mathrm{ext} + v_\mathrm{H}[n]
                                                    + v^\sigma_\mathrm{xc}[n_\uparrow, n_\downarrow].
       \end{equation}
       %
-      The first term in this expression is the external potential, which is essentially the same as the
-      potential $\hat{V}_\mathrm{ext}$ of Eq.~\eqref{eq:ham}. For the He\textsuperscript{+}-He
-      collision system considered in this work it may be written, making use of the semi-classical
-      approximation, as
+      The first term in this expression is the external potential, which is essentially the potential
+      $\hat{V}_\mathrm{ext}$ of Eq.~\eqref{eq:ham} renamed to match the single-particle notation. For
+      the He\textsuperscript{+}-He collision system considered in this work $v_\mathrm{ext}$ may be
+      written, making use of the semi-classical approximation, as
       %
       \begin{equation} \label{eq:hephe-ext}
          v_\mathrm{ext}(\mathbf{r},t) = -\frac{2}{r} 
@@ -219,9 +226,9 @@
       \textsc{opm} makes it prohibitively difficult to implement in general. As a secondary
       option one may instead make use of the Krieger-Li-Iafrate approximation~\cite{klieq, tdkli1,
       tdkli2} (\textsc{kli}). In many situations potentials generated using \textsc{kli} are numerically
-      indistinguishable from those produced by the full \textsc{opm}. The success of the \textsc{kli} is
-      due to the fact that it preserves several properties of the exact potential. In particular
-      \textsc{kli} maintains the correct asymptotics
+      indistinguishable from those produced by the full \textsc{opm}~\cite{opm-rev}. The success of the
+      \textsc{kli} is due to the fact that it preserves several properties of the exact potential. In
+      particular \textsc{kli} maintains the correct asymptotics
       %
       \begin{equation} \label{eq:asymp}
          \lim\limits_{r \rightarrow \infty} v_\mathrm{x}^\sigma (\mathbf{r}) = -\frac{1}{r}.
@@ -243,19 +250,19 @@
       The ground-state density functional theory (\textsc{dft}) scheme of~\cite{diamol} has been adapted
       to calculate a time-dependent exchange potential. At any instant of time, $t$, the
       He\textsuperscript{+}-He system may be regarded as a diatomic quasi-molecule with an internuclear
-      distance $R_\mathrm{int}(t) = \sqrt{b^2 + z(t)^2}$, where $b$ and $z$ are the impact parameter and
+      distance $R_\mathrm{int}(t) = \sqrt{b^2 + Z(t)^2}$, where $b$ and $Z$ are the impact parameter and
       $z$ the position of the projectile as described below Eq.~\eqref{eq:hephe-ext}. If at each
       time-step of the \textsc{tc-bgm} the time-dependent Kohn-Sham orbitals,
       $\varphi_{\sigma j}(\mathbf{r},t)$ are fed into the \textsc{kli} functional (ignoring self
       consistency) an exchange-potential, $v^{\sigma}_\mathrm{x}[\varphi_{\sigma j};t]$, may be
       calculated at each $t$, effectively giving one the time-dependent exchange-potential
-      $v^{\sigma}_\mathrm{x}[\varphi_{\sigma j}](t)$. The restriction of this \textsc{kli} scheme to
-      systems of cylindrical symmetry complicates this processes, in general $\varphi_{j \sigma}$ will
-      not be forced to exhibit any specific symmetry.
+      $v^{\sigma}_\mathrm{x}[\varphi_{\sigma j}](t)$. The restriction of the \textsc{kli} scheme of
+      Ref.~\cite{diamol} to systems of cylindrical symmetry complicates this processes since in general
+      $\varphi_{j \sigma}$ will not exhibit any specific symmetry.
       
       In order to detail a solution to the symmetry problem a more thorough description of the
       \textsc{tc-bgm} is necessary. Within the \textsc{tc-bgm} the Kohn-Sham orbitals are represented in
-      the non-orthogonal basis
+      a non-orthogonal basis
       %
       \begin{equation} \label{eq:bgmexp}
          \varphi_{\sigma j}(\mathbf{r},t) = \sum\limits_{c \in \{P, T\}} \sum\limits_{k, L}
@@ -265,7 +272,7 @@
       where
       %
       \begin{equation} \label{eq:etfbasis}
-         \tilde{\chi}^{L}_{ck}(\mathbf{r}),t =
+         \tilde{\chi}^{L}_{ck}(\mathbf{r},t) =
             \begin{cases}
                e^{i \mathbf{v}_T \cdot \mathbf{r}} {\chi}^{L}_{c k}(\mathbf{r},t) & c = T, \\[2ex]
                e^{i \mathbf{v}_P \cdot \mathbf{r}} {\chi}^{L}_{c k}(\mathbf{r},t) & c = P,
@@ -288,32 +295,35 @@
       %
       where $\mathbf{r}_T$ represents the position vector with respect to the target center.
       
-      In Eq.~\eqref{eq:bgmbasis} the functions $\chi^{0}_{ck}$ are the ground-state orbitals for the
-      target helium atom ($c = T$) and the projectile helium ion ($c = P$). Additional states generated
-      by a target potential operator are possible however in order to keep the number of states in the
-      basis to a minimum and simplify the description only the projectile states are included. This
-      simplification has proven sufficient in the past~\cite{bgm-rev}. The remaining regularizer is set
-      to $\epsilon_P = 1$.
+      In Eq.~\eqref{eq:bgmbasis} the functions $\chi^{0}_{ck}$ are the bound orbitals for the target
+      helium atom ($c = T$) and the projectile helium ion ($c = P$). Additional states generated by a
+      target potential operator are possible however in order to keep the number of states in the basis
+      to a minimum and simplify the description only the pseudostates generated with $W_P$ are included.
+      This simplification has proven sufficient in the past~\cite{bgm-rev}. The remaining regularizer is
+      set to $\epsilon_P = 1$. The complete basis set used may be described in terms of the maximum $L$
+      value included for each bound sub-shell, 1$s$-4$f$, in the basis. On each center these were taken
+      to be (0 0 1 1 1 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3), for a total of 124 basis states.
 
-      It is clear from the above description that only the basis states corresponding s-type orbitals
+      It is clear from the above description that only the basis states corresponding to s-type orbitals
       will make cylindrically symmetric contributions to the \textsc{ks}-orbitals. The simplest solution
       is to only feed the 1s contributions into the \textsc{kli} functional. While higher s-states are
-      also admissible beyond 1s they will no longer represent the most occupied subshell meaning there
-      inclusion will do little to improve the accuracy of the description of a given orbital. Leaving
-      out \textsc{etf}'s for the time being the orbitals will take the explicit form
+      also admissible they will no longer represent the most occupied subshell meaning their inclusion
+      will do little to improve the accuracy of the description of a given orbital. Leaving out
+      \textsc{etf}s for the time being the orbitals will take the explicit form
       %
       \begin{equation} \label{eq:1sonly}
          \varphi_{\sigma j}^{1s}(\mathbf{r},t) = a^{\sigma j}_T(t) \chi^{0}_{T1}(\mathbf{r},t)
                                                + a^{\sigma j}_P(t) \chi^{0}_{P1}(\mathbf{r},t).
       \end{equation}
       %
-      The coefficients are the result of projecting onto the two-dimensional subspace spanned by the
-      target and projectile 1s-states
+      The coefficients are the result of projecting the \textsc{ks}-orbitals onto the two-dimensional
+      subspace spanned by the target and projectile 1s-states
       %
       \begin{equation} \label{eq:proj}
-         \hat{P} = \sum\limits_{c_1, c_2 \in \{T,P\}} \tilde{S}^{-1}_{c_1 c_2}
+         \ket{\varphi^{1s}_{\sigma j}} = \hat{P} \ket{\varphi_{\sigma j}}
+                                       = \sum\limits_{c_1, c_2 \in \{T,P\}} \tilde{S}^{-1}_{c_1 c_2}
                                                       \ket{\chi^{0}_{c_1 1}}
-                                                      \bra{\chi^{0}_{c_2 1}}
+                                                      \braket{\chi^{0}_{c_2 1}| \varphi_{\sigma j}}
       \end{equation}
       %
       with $\tilde{S}^{-1}_{c_1 c_2}$ the inverse of the overlap matrix
@@ -322,14 +332,25 @@
          \tilde{S}_{c_1 c_2} = \braket{ \chi^{0}_{c_1 1} | \chi^{0}_{c_2 1} }.
       \end{equation}
       %
-      The coefficients are then
+      The coefficients may then be identified
+      %
+      \begin{equation} \label{eq:coef1}
+         a^{\sigma j}_c = \sum\limits_{c_1 \in \{T,P\}} \tilde{S}^{-1}_{c c_1}
+                                                        \braket{\chi^0_{c_1 1} | \varphi_{\sigma j}}.
+      \end{equation}
+      %
+      While the overlap integrals $\braket{\chi^0_{c_1 1} | \varphi_{\sigma j}}$ are not directly
+      available, they may be determined indirectly through the use of Eq.~\eqref{eq:bgmexp}
       %
       \begin{equation} \label{eq:coef}
          \begin{split}
-            a^{\sigma j}_c & = \braket{ \chi^{0}_{c 1} | \hat{P} | \varphi_{\sigma j} } \\
-                           & = \sum\limits_{c_1, c_2 \in \{T,P\}} \sum\limits_{k_1, k_2 = 1}^K
-                               \sum\limits_{l_1, l_2 = 1}^L \tilde{S}^{-1}_{c c_1}
-                               S_{c_1 \, k_1 \, l_1 }^{c_2 \, k_2 \, l_2 } d^{j \sigma}_{c_2 k_2 l_2},
+            a^{\sigma j}_c & = \sum\limits_{c_1 \in \{T,P\}} \tilde{S}^{-1}_{c c_1}
+                               \sum\limits_{c_2 \in \{T,P\} } \sum\limits_{k = 1}^K
+                               \sum\limits_{l = 0}^L \braket{ \chi^0_{c_1 1} | \chi^l_{c_2 k}}
+                               d^{\sigma j}_{c_2 k l} \\
+                           & = \sum\limits_{c_1, c_2 \in \{T,P\}} \sum\limits_{k = 1}^K
+                           \sum\limits_{l = 0}^L \tilde{S}^{-1}_{c c_1} S^{c_2 \, k \, l}_{c \, 1 \, 0}
+                           d^{\sigma j}_{c_2 k l},
          \end{split}
       \end{equation}
       %
@@ -342,8 +363,8 @@
       %
       the full overlap matrix.
 
-      Returning to the question of the \textsc{etf}'s, working in the rotating center of mass frame the
-      \textsc{etf}'s become
+      Returning to the question of the \textsc{etf}s, working in the rotating center of mass frame in
+      which the $z$-direction points along the internuclear axis the \textsc{etf}s become
       %
       \begin{subequations} \label{eq:etf}
          \begin{equation} \label{eq:etfT}
@@ -357,8 +378,9 @@
          \end{equation}
       \end{subequations}
       %
-      where $V_\mathrm{rel}$ is the relative velocity of the centers and $\theta = \arctan b/z$. If we
-      now introduce a two-centered coordinated system, placing the foci at the two nuclear centers
+      where $V_\mathrm{rel} = V$ is the relative velocity of the centers and $\theta = \arctan b/z$
+      [where $V$ is the velocity appearing below Eq.~\eqref{eq:hephe-ext}]. If we now introduce a
+      two-centered coordinate system, placing the foci at the two nuclear centers
       %
       \begin{equation} \label{eq:psc}
             \left\{
@@ -370,28 +392,29 @@
             \right.
       \end{equation}
       %
-      it becomes clear that the portion of the \textsc{etf}'s containing only $x$ violates the desired
+      it becomes clear that the portion of the \textsc{etf}s containing $x$ violates the desired
       cylindrical symmetry.
 
       Two obvious solutions present themselves. First, one may simply ignore the \textsc{etf}'s
       completely. This would amount to passing the orbitals described by Eq.~\eqref{eq:1sonly} into
-      the \textsc{kli} functional. Alternately the symmetry breaking portions of the \textsc{etf}'s
+      the \textsc{kli} functional. Alternatively the symmetry breaking portions of the \textsc{etf}'s
       may be dropped. In this case the full 1s-only \textsc{ks}-orbital becomes
       %
       \begin{equation} \label{eq:1sonlyetf}
          \tilde{\varphi}_{\sigma j}^{1s} (\mathbf{r},t) =
                        a^{\sigma j}_T (t)  e^{- \frac{i v_\mathrm{rel} z \cos \theta}{2}}
                                            \chi^{0}_{T1} (\mathbf{r},t)
-                     + a^{\sigma j}_P (t)  e^{\frac{i v_\mathrm{rel} z i \cos \theta}{2}}
+                     + a^{\sigma j}_P (t)  e^{  \frac{i v_\mathrm{rel} z \cos \theta}{2}}
                                            \chi^{0}_{P1} (\mathbf{r},t).
       \end{equation}
       %
-      This will offer at least some of the correction provided by the full \textsc{etf}. Unfortunately
-      As $z$ approaches zero the partial \textsc{etf} will tend to one, meaning that when the target and
+      This will offer at least some of the correction provided by the full \textsc{etf}. Unfortunately,
+      as the electronic coordinate $Z(t)$ approaches zero the partial \textsc{etf} will tend to one,
+      this being the closest approach where $\theta = \frac{\pi}{2}$, meaning that when the target and
       projectile are at their closest, the most active region of the collision, no \textsc{etf} will be
       present. 
       
-      Regardless of which option is chosen it is important that $V_\mathrm{H}$ be determined with the
+      Regardless of which option is chosen it is important that $v_\mathrm{H}$ be determined with the
       same set of orbitals used in the calculation of $v_\mathrm{x}^\sigma$, preserving the precise
       cancellation of the self interaction present in the Hartree potential.
 
@@ -422,25 +445,27 @@
       \begin{equation} \label{eq:denmat}
          \gamma_{f f^\prime}(t_f) = \sum\limits_{\sigma} \sum\limits_{j = 1}^{N_\sigma}
                                \braket{f | \varphi_{\sigma j}(t_f)}
-                               \braket{\varphi_{\sigma j}(t_f) | f^\prime}.
+                               \braket{\varphi_{\sigma j}(t_f) | f^\prime},
       \end{equation}
       %
-      With the transition amplitudes $\braket{f | \varphi_{\sigma j}(t_f)}$ readily calculable from the
-      dynamics. A model of this type which ignores the socalled functional correlations is consistent
-      with an \textsc{iem} description.
+      with the transition amplitudes $\braket{f | \varphi_{\sigma j}(t_f)} =
+      \braket{\chi^l_{c k} | \varphi_{\sigma j}(t_f)}$ (for some $k$, $l$, and $c$) readily calculable
+      from the dynamics. A model of this type which ignores the functional correlations~\cite{p-he2p-he}
+      is consistent with an \textsc{iem} description.
 
       Alternatively, one could consider the probability to explicitly measure the states of some subset
       of the total number of particles. These so called inclusive probabilities can be expressed in
       terms of determinants of submatrices of the density matrix~\cite{inc-prob}.
  
-      In the current problem we are interested those probabilities which correspond to the outcome
+      In the current problem we are interested in those probabilities which correspond to the outcome
       channels of Eqs.~\eqref{eq:tpi111}-\eqref{eq:tpi003}. In such configurations we find $k$ particles
-      on the projectile, $l$ particles in the continuum, and $3 - k - l$ on the target ($1\leq k \leq 3$
-      and $1 \leq l \leq 3 - k$). The probabilities $p_{kl}$ may be calculated in terms of sums of
+      on the projectile, $l$ particles in the continuum, and $3 - k - l$ on the target ($0\leq k \leq 3$
+      and $0 \leq l \leq 3 - k$). The probabilities $p_{kl}$ may be calculated in terms of sums of
       inclusive probabilities to find a given number of particles in the bound states of the target and
       projectile by applying the machinery of~\cite{inc-prob} (see for example~\cite{incEx, mitsuko12,
       gerald15}). With the probabilities in hand the corresponding total cross section for each channel
-      may then be calculated from (if we ignore $\sigma_{10}$ which must be treated with more care)
+      may then be calculated from (if we ignore $\sigma_{10}$ which includes the elastic channel and
+      must be treated with more care)
       %
       \begin{equation} \label{eq:cross}
          \sigma_{kl} = 2 \pi \int_0^\infty b \, p_{kl}(b) \, \mathrm{d}b.
