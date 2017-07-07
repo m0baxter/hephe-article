@@ -278,8 +278,8 @@ if __name__ == "__main__":
     #Plot: TPI-201
     plt.figure(5)
 
-    plt.plot( full[0],  full[6],  "k-", linewidth = lw, label = "$\mathrm{Resp}$ $\mathrm{pETF}$" )
-    plt.plot( part[0],  part[6],  "r:", linewidth = lw, label = "$\mathrm{Resp}$ $\mathrm{nETF}$" )
+    plt.plot( full[0][:-1], full[6][:-1], "k-", linewidth = lw, label = "$\mathrm{Resp}$ $\mathrm{pETF}$" )
+    plt.plot( part[0][:-1], part[6][:-1], "r:", linewidth = lw, label = "$\mathrm{Resp}$ $\mathrm{nETF}$" )
     #plt.plot( petf[0],  petf[6],  "g--", linewidth = lw, label = "$\mathrm{pETF}$" )
     #plt.plot( netf[0],  netf[6],  "b-.", linewidth = lw, label = "$\mathrm{nETF}$" )
     plt.plot( 1000 * SM03s01[0]/4, SM03s01[1] * 1E-2, "g--", linewidth = lw )
@@ -344,7 +344,7 @@ if __name__ == "__main__":
     plt.xscale("log")
 
     plt.xlabel( "$E_P$ $[\mathrm{keV}/\mathrm{amu}]$", fontsize = lbl_size )
-    plt.ylabel( "$\sigma{03}$ $[10^{-16}\mathrm{cm}^2]$", fontsize = lbl_size )
+    plt.ylabel( "$\sigma_{03}$ $[10^{-16}\mathrm{cm}^2]$", fontsize = lbl_size )
  
     ax = plt.gca()
     ax.xaxis.set_tick_params(which='both', width=2)
@@ -394,7 +394,7 @@ if __name__ == "__main__":
     plt.xscale("log")
 
     plt.xlabel( "$E_P$ $[\mathrm{keV}/\mathrm{amu}]$", fontsize = lbl_size )
-    plt.ylabel( "$\sigma^{30}$ $[10^{-16}\mathrm{cm}^2]$", fontsize = lbl_size )
+    plt.ylabel( "$\sigma_{30}$ $[10^{-16}\mathrm{cm}^2]$", fontsize = lbl_size )
 
     plt.legend( loc="best", fancybox=True, labelspacing = .2, numpoints=1 )
  
