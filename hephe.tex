@@ -38,20 +38,18 @@
 
 \end{abstract}
 
-\pacs{31.15.ee, 34.50.Fa, 34.10.+x, 34.70.+e (Maybe\dots)} %nnnote: probably change this
-
 \maketitle
 
 \begin{section}{Introduction \label{sec:intro}}
 
-   The general collision system carries active electrons on both the target and projectile. The simplest
-   generic collision system consists of a target with two electrons and a single electron on the
-   projectile. A prototypical example from this class of problem is the He\textsuperscript{+}-He system.
-   A popular alternative is to use an atomic hydrogen target (see for example~\cite{hEx1, hEx2}).
-   However, in He\textsuperscript{+}-H collisions care must be taken when treating the distinct
-   spin-singlet and triplet initial states~\cite{heph}.
+   The general ion-atom collision system carries active electrons on both the target and projectile. A
+   prototypical example from this class of problem is the He\textsuperscript{+}-He system which consists
+   of a target with two electrons and a single electron on the projectile. A popular alternative is to
+   consider an atomic hydrogen target (see for example~\cite{hEx1, hEx2}). However, in
+   He\textsuperscript{+}-H collisions care must be taken when treating the distinct spin-singlet and
+   triplet initial states~\cite{heph}.
 
-   A variety of charge transfer processes are possible can occur as a result of these collisions. The
+   A variety of charge transfer processes can occur as in He\textsuperscript{+}-He collisions. The
    processes can be broadly categorized into those that involve one active electron:
    %
    \begin{equation} \label{eq:tpi111}
@@ -86,16 +84,15 @@
    \end{equation}
    %
    Additionally there is the channel where no charges are transferred and the two channels that result
-   in the production of He\textsuperscript{-}. From the point of view of experiment
-   He\textsuperscript{-} production may be controlled for~\cite{metahe} and cross sections can even be
-   made negligible~\cite{neghe-neg}.
+   in the production of He\textsuperscript{-}. Cross sections for the latter are known to be
+   negligible~\cite{metahe, neghe-neg}.
 
    Total cross sections for the processes described in Eqs.~\eqref{eq:tpi111}-\eqref{eq:tpi003} have
-   been calculated within a spin-density functional theoretic~\cite{td-spindep} framework, a
-   generalization of time-dependent density functional theory~\cite{tddft, ullrich} to spin-dependent
-   systems. The spin-polarized nature of the system accentuates the importance of exchange effects
-   which in turn necessitates an accurate exchange potential. An exploration of a procedure for
-   calculating such a potential comprises the bulk of this work.
+   been calculated within a spin-density functional theorey~\cite{td-spindep} framework, a
+   generalization of time-dependent density functional theory (\textsc{tddft})~\cite{tddft, ullrich} to
+   spin-dependent systems. The spin-polarized nature of the system accentuates the importance of
+   exchange effects which in turn necessitates an accurate exchange potential. An exploration of a
+   procedure for calculating such a potential comprises the bulk of this work.
 
    Experimental results for the various outcome channels over a large range of impact
    energies~\cite{BS58, HN78, HSE78, dCFdP88, DT-88, Dub-89, ASL91, FTFHLP-95, SSMSM-11} provide a
@@ -139,12 +136,12 @@
          \hat{H}(t) = \hat{T} + \hat{V}_\mathrm{ee} + \hat{V}_\mathrm{ext}(t),
       \end{equation}
       %
-      where $\hat{T}$ is the kinetic energy, $\hat{V}_\mathrm{ee}$ are the two particle interactions,
+      where $\hat{T}$ is the kinetic energy, $\hat{V}_\mathrm{ee}$ are the two-particle interactions,
       and $\hat{V}_\mathrm{ext}$ is a time-dependent, one-particle interaction potential.
 
       The computationally intensive two-body term $\hat{V}_\mathrm{ee}$ makes direct solutions of the
-      \textsc{tdse} difficult. Time-dependent density-functional theory~\cite{tddft, ullrich} (TDDFT)
-      offers a solution to this problem. By making use of the mapping between the one-particle density
+      \textsc{tdse} difficult. \textsc{tddft}~\cite{tddft, ullrich} offers a solution to this problem.
+      By making use of the mapping between the one-particle density
       %
       \begin{equation} \label{eq:dendef}
          n(\mathbf{r},t) = N \sum\limits_{\sigma} \int \mathrm{d}^3 r_2 \dots \mathrm{d}^3 r_N \,
@@ -188,10 +185,10 @@
                                                    + v^\sigma_\mathrm{xc}[n_\uparrow, n_\downarrow].
       \end{equation}
       %
-      The first term in this expression is the external potential, which is essentially the potential
-      $\hat{V}_\mathrm{ext}$ of Eq.~\eqref{eq:ham} renamed to match the single-particle notation. For
-      the He\textsuperscript{+}-He collision system considered in this work $v_\mathrm{ext}$ may be
-      written, making use of the semi-classical approximation, as
+      The first term in this expression is the external potential, which is the potential
+      $\hat{V}_\mathrm{ext}$ of Eq.~\eqref{eq:ham} on the single-particle level. For the
+      He\textsuperscript{+}-He collision system considered in this work $v_\mathrm{ext}$ may be written,
+      making use of the semi-classical approximation, as
       %
       \begin{equation} \label{eq:hephe-ext}
          v_\mathrm{ext}(\mathbf{r},t) = -\frac{2}{r} 
@@ -221,8 +218,8 @@
       x-only approximation where the correlation potential is taken to be zero ($v^\sigma_\mathrm{c} =
       0$). Such a model which ignores dynamic correlation is usually referred to as an independent
       electron model (\textsc{iem}). Within this approximation $v^\sigma_\mathrm{x}$ may be determined
-      exactly via the optimized potential method~\cite{opm1, opm2, tdopm}. The complexity of the
-      \textsc{opm} makes it prohibitively difficult to implement in general. As a secondary
+      exactly via the optimized potential method (\textsc{opm})~\cite{opm1, opm2, tdopm}. The complexity
+      of the \textsc{opm} makes it prohibitively difficult to implement in general. As a secondary
       option one may instead make use of the Krieger-Li-Iafrate approximation~\cite{klieq, tdkli1,
       tdkli2} (\textsc{kli}). In many situations potentials generated using \textsc{kli} are numerically
       indistinguishable from those produced by the full \textsc{opm}~\cite{opm-rev}. The success of the
@@ -241,27 +238,27 @@
       generator method~\cite{tcbgm} (\textsc{tc-bgm}). As mentioned above this relies upon the
       specification of an exchange-correlation potential. While the correlation potential may be
       ignored, that is the x-only approximation may be used (with some understanding of the
-      consequences), an accurate exchange-potential is essential for a precise description of the
-      He\textsuperscript{+}-He collision system. The spin polarized nature of the system, which
+      consequences), an accurate exchange potential is essential for a precise description of the
+      He\textsuperscript{+}-He collision system. The spin-polarized nature of the system, which
       emphasizes exchange effects, makes this fact indisputable. To this end the \textsc{kli}
       approximation to the \textsc{opm} was employed in the calculation of $v^\sigma_\mathrm{x}$.
 
       The ground-state density functional theory (\textsc{dft}) scheme of~\cite{diamol} has been adapted
       to calculate a time-dependent exchange potential. At any instant of time, $t$, the
       He\textsuperscript{+}-He system may be regarded as a diatomic quasi-molecule with an internuclear
-      distance $R_\mathrm{int}(t) = \sqrt{b^2 + Z(t)^2}$, where $b$ and $Z$ are the impact parameter and
-      $z$ the position of the projectile as described below Eq.~\eqref{eq:hephe-ext}. If at each
+      distance $R(t) = \sqrt{b^2 + Z(t)^2}$, where $b$ and $Z$ are the impact parameter and the $z$
+      position of the projectile as described below Eq.~\eqref{eq:hephe-ext}. If at each
       time-step of the \textsc{tc-bgm} the time-dependent Kohn-Sham orbitals,
       $\varphi_{\sigma j}(\mathbf{r},t)$ are fed into the \textsc{kli} functional (ignoring self
-      consistency) an exchange-potential, $v^{\sigma}_\mathrm{x}[\varphi_{\sigma j};t]$, may be
-      calculated at each $t$, effectively giving one the time-dependent exchange-potential
+      consistency) an exchange potential, $v^{\sigma}_\mathrm{x}[\varphi_{\sigma j};t]$, may be
+      calculated at each $t$, effectively giving one the time-dependent exchange potential
       $v^{\sigma}_\mathrm{x}[\varphi_{\sigma j}](t)$. The restriction of the \textsc{kli} scheme of
       Ref.~\cite{diamol} to systems of cylindrical symmetry complicates this processes since in general
       $\varphi_{j \sigma}$ will not exhibit any specific symmetry.
       
       In order to detail a solution to the symmetry problem a more thorough description of the
-      \textsc{tc-bgm} is necessary. Within the \textsc{tc-bgm} the Kohn-Sham orbitals are represented in
-      a non-orthogonal basis
+      \textsc{tc-bgm} is necessary. Within the \textsc{tc-bgm} the Kohn-Sham (\textsc{ks}) orbitals are
+      represented in a non-orthogonal basis
       %
       \begin{equation} \label{eq:bgmexp}
          \varphi_{\sigma j}(\mathbf{r},t) = \sum\limits_{c \in \{P, T\}} \sum\limits_{k, L}
@@ -363,7 +360,7 @@
          \end{equation}
       \end{subequations}
       %
-      where $V_\mathrm{rel} = V$ is the relative velocity of the centers and $\theta = \arctan b/z$
+      where $\theta = \arctan b/Z$ and $V_\mathrm{rel} = V$ is the relative velocity of the centers
       [where $V$ is the velocity appearing below Eq.~\eqref{eq:hephe-ext}]. If we now introduce a
       two-centered coordinate system, placing the foci at the two nuclear centers
       %
@@ -394,10 +391,9 @@
       \end{equation}
       %
       This will offer at least some of the correction provided by the full \textsc{etf}. Unfortunately,
-      as the electronic coordinate $Z(t)$ approaches zero the partial \textsc{etf} will tend to one,
-      this being the closest approach where $\theta = \frac{\pi}{2}$, meaning that when the target and
-      projectile are at their closest, the most active region of the collision, no \textsc{etf} will be
-      present. 
+      as the internuclear coordinate $Z(t)$ approaches zero (corresponding to $\theta = \frac{\pi}{2}$)
+      the partial \textsc{etf} will tend to one, meaning that when the target and projectile are at
+      their closest, the most active region of the collision, no \textsc{etf} will be present. 
       
       Regardless of which option is chosen it is important that $v_\mathrm{H}$ be determined with the
       same set of orbitals used in the calculation of $v_\mathrm{x}^\sigma$, preserving the precise
@@ -434,9 +430,10 @@
       \end{equation}
       %
       with the transition amplitudes $\braket{f | \varphi_{\sigma j}(t_f)} =
-      \braket{\chi^l_{c k} | \varphi_{\sigma j}(t_f)}$ (for some $k$, $l$, and $c$) readily calculable
-      from the dynamics. A model of this type which ignores the functional correlations~\cite{p-he2p-he}
-      is consistent with an \textsc{iem} description.
+      \braket{\tilde{\chi}^l_{c k} | \varphi_{\sigma j}(t_f)}$ (for some $k$, $l$, $c$, and properly
+      orthoganalized basis functions $\tilde{\chi}^l_{c k}$) readily calculable from the dynamics. A
+      model of this type which ignores the functional correlations~\cite{p-he2p-he} is consistent with
+      an \textsc{iem} description.
 
       Alternatively, one could consider the probability to explicitly measure the states of some subset
       of the total number of particles. These so called inclusive probabilities can be expressed in
@@ -534,13 +531,13 @@
    \end{figure}
 
    In what follows all results obtained by propagating the full \textsc{ks} orbitals in a potential
-   generated from the 1s-only orbitals of Eq.~\eqref{eq:1sonly} that includes no electron translation
+   generated from the 1s-only orbitals of Eq.~\eqref{eq:1sonly} that include no electron translation
    factors will be designated by n\textsc{etf}. Those obtained by an application of the same processes
    using the 1s-only orbitals, with partial \textsc{etf}s, of Eq.~\eqref{eq:1sonlyetf} will be referred
    to as p\textsc{etf}.
 
    Before discussing the total cross section results we will present some of the lower level features of
-   the calculations. We will consider the single-particle probabilities for each orbital to ionize and
+   the calculations. We will consider the single-particle probabilities for each electron to ionize and
    to switch the nuclear center to which it is bound. These probabilities can be calculated from the
    transition amplitudes. As an example, if $\varphi_{\uparrow 1}$ begins initially on the target then
    the single-particle probability to ionize this electron can be written
@@ -548,16 +545,18 @@
    \begin{equation} \label{eq:ionprob}
       p(\mathrm{He}(\uparrow_1) \rightarrow I ) =
          \sum\limits_{c \in \{T,P\}} \sum\limits_{k=1}^K \sum\limits_{l = 1}^L
-         \left| \braket{ \chi^{l}_{c k} | \varphi_{\uparrow 1}(t_f)} \right|^2
+         \left| \braket{ \tilde{\chi}^{l}_{c k} | \varphi_{\uparrow 1}(t_f)} \right|^2
    \end{equation}
    %
    and the single-particle probability to transfer to the projectile may be written
    %
    \begin{equation} \label{eq:transprob}
       p(\mathrm{He}(\uparrow_1) \rightarrow \mathrm{He}^+) =
-         \sum\limits_{k=1}^K \left| \braket{ \chi^{0}_{P k} | \varphi_{\uparrow 1}(t_f)} \right|^2.
+         \sum\limits_{k=1}^K \left| \braket{ \tilde{\chi}^{0}_{P k} | \varphi_{\uparrow 1}(t_f)},
+                             \right|^2.
    \end{equation}
    %
+   Where the probabilities are defined in terms of orthaganilized orbitals including full \textsc{etf}s.
    These probabilities are presented for the p\textsc{etf} model for an impact energy ($E_P =
    \frac{1}{2} m_\textrm{He} V^2$) of 40~keV/amu in Fig.~\ref{fig:pbPlot}. At this impact energy
    capture is the the dominant process. As one would expect the probability to ionize the more tightly
