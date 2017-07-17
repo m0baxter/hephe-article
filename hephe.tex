@@ -716,12 +716,12 @@
    In Eq.~\eqref{eq:cross} the integrand, $b \, p(b)$, is approximated by a cubic spline which is, in
    turn, integrated to arrive at a cross section. The structure of the integrand means that so long as
    $p(0)$ is finite its value is irrelevant and we always know the integrand at $b = 0$. In the best
-   possible scenario the lower bound on the error of a cubic spline will scale to the third power in the
-   largest step between knots~\cite{spline-err}. The step size factor in the error bound then increases
-   from 0.001 to 0.512, an increase by an approximate factor of 500. It is this decrease in the accuracy
-   of the interpolation which results in the minor structures above 500~keV/amu. The presence of these
-   unphysical structures are the reason for the lack of a data point at 1000~keV/amu in
-   Fig.~\ref{fig:cs201}.
+   possible scenario the lower bound on the error of a cubic spline will scale to the fourth power in
+   the largest step between knots~\cite{spline-err}. The step size factor in the error bound then
+   increases from 0.0001 to 0.4096, an increase by an approximate factor of 4000. It is this decrease in
+   the accuracy of the interpolation which results in the minor structures above 500~keV/amu. The
+   presence of these unphysical structures are the reason for the lack of a data point at 1000~keV/amu
+   in Fig.~\ref{fig:cs201}.
 
 \end{section}
 
