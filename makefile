@@ -20,5 +20,5 @@ clean:
 
 fullClean:
 	latexmk -C
-	rm -r $(imgDir)*.pdf $(imgDir)*.eps
+	rm $(imgDir)*.pdf $(imgDir)*.eps $(imgDir)crossPlots/*.pdf $(imgDir)crossPlots/*.eps
 

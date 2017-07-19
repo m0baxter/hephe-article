@@ -112,7 +112,7 @@
    some details of the two-center basis generator method which was used to solve for the one-particle
    density. The theory section closes with a description of the final-state analysis for extracting
    the various outcome probabilities (Sec.~\ref{sec:probs}). The results of our calculations are
-   presented in Sec.~\ref{sec:disc}. Finally conclusions drawn from these studies are offered in
+   presented in Sec.~\ref{sec:disc}. Finally conclusions are drawn from these studies are offered in
    Sec.~\ref{sec:conc}.
 
    Atomic units ($\hbar = m_e = e = 1$) are used unless stated otherwise.
@@ -127,7 +127,7 @@
       evolution is governed by the time-dependent Schr\"{o}dinger equation (\textsc{tdse})
       %
       \begin{equation} \label{eq:tdse}
-         i \frac{\mathrm{d} \Psi(t)}{\mathrm{d}t} = \hat{H}(t) \Psi(t),
+         i \frac{\partial \Psi(t)}{\partial t} = \hat{H}(t) \Psi(t),
       \end{equation}
       %
       with a Hamiltonian $\hat{H}$ which may be written as
@@ -139,12 +139,12 @@
       where $\hat{T}$ is the kinetic energy, $\hat{V}_\mathrm{ee}$ are the two-particle interactions,
       and $\hat{V}_\mathrm{ext}$ is a time-dependent, one-particle interaction potential.
 
-      The computationally intensive two-body term $\hat{V}_\mathrm{ee}$ makes direct solutions of the
+      The computationally demanding two-body term $\hat{V}_\mathrm{ee}$ makes direct solutions of the
       \textsc{tdse} difficult. \textsc{tddft}~\cite{tddft, ullrich} offers a solution to this problem.
-      By making use of the mapping between the one-particle density
+      By making use of the one-to-one correspondence between the one-particle density
       %
       \begin{equation} \label{eq:dendef}
-         n(\mathbf{r},t) = N \sum\limits_{\sigma} \int \mathrm{d}^3 r_2 \dots \mathrm{d}^3 r_N \,
+         n(\mathbf{r},t) = N \sum\limits_{\sigma_1 \dots \sigma_N} \int \mathrm{d}^3 r_2 \dots \mathrm{d}^3 r_N \,
                             \left| \Psi(\mathbf{x}_1,\dots, \mathbf{x}_N,t) \right|^2
       \end{equation}
       %
@@ -153,8 +153,8 @@
       theorem~\cite{rg_theorem, td-spindep} the interacting system may be mapped onto a system of
       non-interacting particles.
 
-      This so-called Kohn-Sham system consists of $N$ spin-orbitals $\varphi_{j \sigma}$ which evolve
-      according to the time-dependent Kohn-Sham equation
+      This so-called Kohn-Sham (\textsc{ks}) system consists of $N$ spin-orbitals $\varphi_{j \sigma}$ which evolve
+      according to the time-dependent \textsc{ks} equation
       %
       \begin{equation} \label{eq:tdks}
          i \frac{\partial}{\partial t} \varphi_{j\sigma} = \left( -\frac{\Delta}{2} +
@@ -177,7 +177,7 @@
       \end{equation}
       %
       $N_\sigma$ is the number of particles of a given spin projection $\sigma$, and
-      $v^\sigma_\textsc{ks}$ is the Kohn-Sham potential. The potential may be decomposed into several
+      $v^\sigma_\textsc{ks}$ is the \textsc{ks} potential. The potential may be decomposed into several
       simpler objects
       %
       \begin{equation} \label{eq:vks}
@@ -207,14 +207,14 @@
       %
       which is an explicit functional of the full one-particle density. The last term is the
       exchange-correlation potential which encodes the complicated electron-electron interaction
-      potential into the language of the non-interacting system. For convenience this is often further
+      potential into the language of the non-interacting system. For convenience $v^\sigma_\mathrm{xc}$ is often further
       broken down into separate exchange and correlation potentials
       %
       \begin{equation} \label{eq:vxc}
          v^\sigma_\mathrm{xc} = v^\sigma_\mathrm{x} + v^\sigma_\mathrm{c}.
       \end{equation}
 
-      Splitting $v_\mathrm{xc}$ into an exchange and correlation part facilitates the application of the
+      Splitting $v^\sigma_\mathrm{xc}$ into an exchange and correlation part facilitates the application of the
       x-only approximation where the correlation potential is taken to be zero ($v^\sigma_\mathrm{c} =
       0$). Such a model which ignores dynamic correlation is usually referred to as an independent
       electron model (\textsc{iem}). Within this approximation $v^\sigma_\mathrm{x}$ may be determined
@@ -222,9 +222,10 @@
       of the \textsc{opm} makes it prohibitively difficult to implement in general. As a secondary
       option one may instead make use of the Krieger-Li-Iafrate approximation~\cite{klieq, tdkli1,
       tdkli2} (\textsc{kli}). In many situations potentials generated using \textsc{kli} are numerically
-      indistinguishable from those produced by the full \textsc{opm}~\cite{opm-rev}. The success of the
+      close to those produced by the full \textsc{opm}~\cite{opm-rev}. The success of the
       \textsc{kli} is due to the fact that it preserves several properties of the exact potential. In
-      particular \textsc{kli} maintains the correct asymptotics
+      particular, the \textsc{kli} approximation ensures the exact cancellation of the self-interaction
+      in the Hartree term and thus maintains the correct asymptotics,
       %
       \begin{equation} \label{eq:asymp}
          \lim\limits_{r \rightarrow \infty} v_\mathrm{x}^\sigma (\mathbf{r}) = -\frac{1}{r}.
@@ -246,18 +247,69 @@
       The ground-state density functional theory (\textsc{dft}) scheme of~\cite{diamol} has been adapted
       to calculate a time-dependent exchange potential. At any instant of time, $t$, the
       He\textsuperscript{+}-He system may be regarded as a diatomic quasi-molecule with an internuclear
-      distance $R(t) = \sqrt{b^2 + Z(t)^2}$, where $b$ and $Z$ are the impact parameter and the $z$
+      distance $R(t) = \sqrt{b^2 + Z(t)^2}$, where $b$ and $Z$ are the impact parameter and $z$ the
       position of the projectile as described below Eq.~\eqref{eq:hephe-ext}. If at each
-      time-step of the \textsc{tc-bgm} the time-dependent Kohn-Sham orbitals,
-      $\varphi_{\sigma j}(\mathbf{r},t)$ are fed into the \textsc{kli} functional (ignoring self
-      consistency) an exchange potential, $v^{\sigma}_\mathrm{x}[ \{ \varphi_{\sigma^\prime j} \};t]$,
-      may be calculated at each $t$, effectively giving one the time-dependent exchange potential
-      $v^{\sigma}_\mathrm{x}[ \{ \varphi_{\sigma^\prime j} \}](t)$. The restriction of the \textsc{kli}
-      scheme of Ref.~\cite{diamol} to systems of cylindrical symmetry complicates this processes since in
-      general $\varphi_{j \sigma}$ will not exhibit any specific symmetry.
+      time-step of the \textsc{tc-bgm} the time-dependent \textsc{ks} orbitals
+      $\varphi_{\sigma j}(\mathbf{r},t)$ are fed into the \textsc{kli} functional
+      a time-dependent exchange potential, $v^{\sigma}_\mathrm{x}[ \{ \varphi_{\sigma j} \};t]$,
+      is obtained,\footnote{The normalization of the \textsc{kli} potential is chosen so that
+      %
+      \begin{eqnarray}
+         v_\mathrm{x}^\textsc{kli}(\mathbf{r},t)
+         &\xrightarrow{\vert\mathbf{r}\vert\to\infty} & 0 \label{eq:normvxkli}
+         \,.
+      \end{eqnarray}
+      },
+      %
+      \begin{eqnarray}
+         v_\mathrm{x}^{\textsc{kli},\sigma}(\mathbf{r}, t)
+         &=&
+         \frac{1}{2n_\sigma(\mathbf{r},t)}
+         \sum_{j=1}^{N_\sigma}
+         \big\lbrace
+         \left\lbrack
+         e_{\mathrm{x},j}^\sigma(\mathbf{r},t) + c.c.
+         \right\rbrack
+         \nonumber \\
+         &&\hphantom{\frac{1}{2n_\sigma(\mathbf{r},t)} \sum_{j=1}^{N_\sigma}} +
+         \vert\varphi_{j\sigma}(\mathbf{r},t)\vert^2
+         \Delta_{j\sigma}(t)
+         \big\rbrace
+         \label{eq:vxkli} \\
+         \Delta_{j\sigma}(t)
+         &=& \int d^3r\,
+         \left\lbrace
+         \vert\varphi_{j\sigma}(\mathbf{r},t)\vert^2 v_\mathrm{x}^{\textsc{kli},\sigma}(\mathbf{r},t)
+         - e_{\mathrm{x},j}^\sigma(\mathbf{r},t)
+         \right\rbrace
+         \nonumber
+         \\
+         &&
+         + c.c.
+         \label{eq:deltavxkli}
+         \\
+         e_{\mathrm{x},j}^\sigma(\mathbf{r},t)
+         &=& -
+         \sum_{k=1}^{N_\sigma}
+         \varphi_{j\sigma}^\ast(\mathbf{r},t)
+         \varphi_{k\sigma}(\mathbf{r},t)
+         \nonumber
+         \\
+         &&\times
+         \int d^3r'\,
+         \frac{\varphi_{k\sigma}^\ast(\mathbf{r}',t)\,\varphi_{j\sigma}(\mathbf{r}',t)}
+            {\vert\mathbf{r}-\mathbf{r}'\vert}
+         \,.
+      \end{eqnarray}
+      %
+      In Ref.~\cite{diamol} the \textsc{kli} scheme has been implemented for
+      eigenstates of a total \textsc{ks} potential which is invariant against
+      rotation around the internuclear axis.
+      This restriction complicates the use of the corresponding \textsc{kli}
+      potential, since the present $\varphi_{j \sigma}$ do not exhibit any specific symmetry.
       
       In order to detail a solution to the symmetry problem a more thorough description of the
-      \textsc{tc-bgm} is necessary. Within the \textsc{tc-bgm} the Kohn-Sham (\textsc{ks}) orbitals are
+      \textsc{tc-bgm} is necessary. Within the \textsc{tc-bgm} the \textsc{ks} orbitals are
       represented in a non-orthogonal basis
       %
       \begin{equation} \label{eq:bgmexp}
@@ -431,7 +483,7 @@
       %
       with the transition amplitudes $\braket{f | \varphi_{\sigma j}(t_f)} =
       \braket{\tilde{\chi}^l_{c k} | \varphi_{\sigma j}(t_f)}$ (for some $k$, $l$, $c$, and properly
-      orthoganalized basis functions $\tilde{\chi}^l_{c k}$) readily calculable from the dynamics. A
+      orthogonalized basis functions $\tilde{\chi}^l_{c k}$) readily calculable from the dynamics. A
       model of this type which ignores the functional correlations~\cite{p-he2p-he} is consistent with
       an \textsc{iem} description.
 
@@ -558,7 +610,7 @@
                              \right|^2,
    \end{equation}
    %
-   where the probabilities are defined in terms of orthogonilized orbitals including full \textsc{etf}s.
+   where the probabilities are defined in terms of orthogonalized orbitals including full \textsc{etf}s.
    These probabilities are presented for the p\textsc{etf} model for an impact energy ($E_P =
    \frac{1}{2} m_\textrm{He} V^2$) of 40~keV/amu in Fig.~\ref{fig:pbPlot}. At this impact energy
    capture is the the dominant process. As one would expect the probability to ionize the more tightly
@@ -744,7 +796,7 @@
    applications of the procedure laid out in this work would benefit greatly from a fully
    three-dimensional implementation of the \textsc{kli} functional that makes no symmetry assumptions.
 
-   Comparisons of our results with the theoretical works of other groups points to the fact that the
+   Comparisons of our results with the theoretical works of other groups point to the fact that the
    calculations would also gain from the inclusion of correlation effects. Treating this x-only version
    as a proof of concept there is nothing, apart from the added complexity of the calculations,
    precluding the addition of dynamic correlation through the application of any number of ground-state
