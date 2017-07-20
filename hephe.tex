@@ -1,5 +1,5 @@
 
-\documentclass[aps, pra, reprint, groupedaddress, amsfonts, longbibliography,
+\documentclass[aps, pra, preprint, groupedaddress, amsfonts, longbibliography,
                amsmath, amssymb, showpacs, nofootinbib]{revtex4-1}
 
 \usepackage{microtype}
@@ -144,8 +144,9 @@
       By making use of the one-to-one correspondence between the one-particle density
       %
       \begin{equation} \label{eq:dendef}
-         n(\mathbf{r},t) = N \sum\limits_{\sigma_1 \dots \sigma_N} \int \mathrm{d}^3 r_2 \dots \mathrm{d}^3 r_N \,
-                            \left| \Psi(\mathbf{x}_1,\dots, \mathbf{x}_N,t) \right|^2
+         n(\mathbf{r},t) = N \sum\limits_{\sigma_1 \dots \sigma_N} \int \mathrm{d}^3 r_2 \dots
+                             \mathrm{d}^3 r_N \,
+                             \left| \Psi(\mathbf{x}_1,\dots, \mathbf{x}_N,t) \right|^2
       \end{equation}
       %
       and the external potential $\hat{V}_\mathrm{ext}$, where $x_i = (\mathbf{r}_i, \sigma_i)$ label
@@ -153,8 +154,8 @@
       theorem~\cite{rg_theorem, td-spindep} the interacting system may be mapped onto a system of
       non-interacting particles.
 
-      This so-called Kohn-Sham (\textsc{ks}) system consists of $N$ spin-orbitals $\varphi_{j \sigma}$ which evolve
-      according to the time-dependent \textsc{ks} equation
+      This so-called Kohn-Sham (\textsc{ks}) system consists of $N$ spin-orbitals $\varphi_{j \sigma}$
+      which evolve according to the time-dependent \textsc{ks} equation
       %
       \begin{equation} \label{eq:tdks}
          i \frac{\partial}{\partial t} \varphi_{j\sigma} = \left( -\frac{\Delta}{2} +
@@ -207,25 +208,26 @@
       %
       which is an explicit functional of the full one-particle density. The last term is the
       exchange-correlation potential which encodes the complicated electron-electron interaction
-      potential into the language of the non-interacting system. For convenience $v^\sigma_\mathrm{xc}$ is often further
-      broken down into separate exchange and correlation potentials
+      potential into the language of the non-interacting system. For convenience $v^\sigma_\mathrm{xc}$
+      is often further broken down into separate exchange and correlation potentials
       %
       \begin{equation} \label{eq:vxc}
          v^\sigma_\mathrm{xc} = v^\sigma_\mathrm{x} + v^\sigma_\mathrm{c}.
       \end{equation}
 
-      Splitting $v^\sigma_\mathrm{xc}$ into an exchange and correlation part facilitates the application of the
-      x-only approximation where the correlation potential is taken to be zero ($v^\sigma_\mathrm{c} =
-      0$). Such a model which ignores dynamic correlation is usually referred to as an independent
-      electron model (\textsc{iem}). Within this approximation $v^\sigma_\mathrm{x}$ may be determined
-      exactly via the optimized potential method (\textsc{opm})~\cite{opm1, opm2, tdopm}. The complexity
-      of the \textsc{opm} makes it prohibitively difficult to implement in general. As a secondary
-      option one may instead make use of the Krieger-Li-Iafrate approximation~\cite{klieq, tdkli1,
-      tdkli2} (\textsc{kli}). In many situations potentials generated using \textsc{kli} are numerically
-      close to those produced by the full \textsc{opm}~\cite{opm-rev}. The success of the
-      \textsc{kli} is due to the fact that it preserves several properties of the exact potential. In
-      particular, the \textsc{kli} approximation ensures the exact cancellation of the self-interaction
-      in the Hartree term and thus maintains the correct asymptotics,
+      Splitting $v^\sigma_\mathrm{xc}$ into an exchange and correlation part facilitates the application
+      of the x-only approximation where the correlation potential is taken to be zero
+      ($v^\sigma_\mathrm{c} = 0$). Such a model which ignores dynamic correlation is usually referred to
+      as an independent electron model (\textsc{iem}). Within this approximation $v^\sigma_\mathrm{x}$
+      may be determined exactly via the optimized potential method (\textsc{opm})~\cite{opm1, opm2,
+      tdopm}. The complexity of the \textsc{opm} makes it prohibitively difficult to implement in
+      general. As a secondary option one may instead make use of the Krieger-Li-Iafrate
+      approximation~\cite{klieq, tdkli1, tdkli2} (\textsc{kli}). In many situations potentials generated
+      using \textsc{kli} are numerically close to those produced by the full
+      \textsc{opm}~\cite{opm-rev}. The success of the \textsc{kli} is due to the fact that it preserves
+      several properties of the exact potential. In particular, the \textsc{kli} approximation ensures
+      the exact cancellation of the self-interaction in the Hartree term and thus maintains the correct
+      asymptotics,
       %
       \begin{equation} \label{eq:asymp}
          \lim\limits_{r \rightarrow \infty} v_\mathrm{x}^\sigma (\mathbf{r}) = -\frac{1}{r}.
@@ -349,8 +351,19 @@
       to a minimum and simplify the description only the pseudostates generated with $W_P$ are included.
       This simplification has proven sufficient in the past~\cite{bgm-rev}. The remaining regularizer is
       set to $\epsilon_P = 1$. The complete basis set used may be described in terms of the maximum $L$
-      value included for each bound sub-shell, 1$s$-4$f$, in the basis. On each center these were taken
-      to be (0 0 1 1 1 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3), for a total of 124 basis states.
+      value included for each bound sub-shell, 1$s$-4$f$, indexed by $k$, in the basis. These values are
+      listed in Tab.~\ref{tab:basis} and total 124 basis states.
+      
+      \begin{table}
+         \caption{Description of the \textsc{tc-bgm} basis expansion. \label{tab:basis}}
+         \begin{ruledtabular}
+            \begin{tabular}{lcccccccccccccccccccc}
+               state            & 1s & 2s & 2p & 3s & 3p & 3d & 4s & 4p & 4d & 4f \\
+               $k$              & 1 & 2 & 3, 4 &5 & 6, 7 & 8{-}10 & 11 & 12, 13 & 14{-}16 & 17{-}20 \\
+               $L_\mathrm{max}$ & 0  & 0  & 1  & 1  & 2  & 2  & 2  & 3  & 3  & 3  
+            \end{tabular}
+         \end{ruledtabular} 
+      \end{table}
 
       It is clear from the above description that only the basis states corresponding to s-type orbitals
       will make cylindrically symmetric contributions to the \textsc{ks}-orbitals. The simplest solution
@@ -403,18 +416,18 @@
       \begin{subequations} \label{eq:etf}
          \begin{equation} \label{eq:etfT}
             e^{i \mathbf{v}_T \cdot \mathbf{r}} =
-             e^{\frac{i V_\mathrm{rel}}{2} (x \sin \theta - z \cos \theta)},
+             e^{\frac{i V}{2} (x \sin \theta - z \cos \theta)},
          \end{equation}
          %
          \begin{equation} \label{eq:etfP}
             e^{i \mathbf{v}_P \cdot \mathbf{r}} =
-             e^{\frac{i V_\mathrm{rel}}{2} (z \cos \theta - x \sin \theta)},
+             e^{\frac{i V}{2} (z \cos \theta - x \sin \theta)},
          \end{equation}
       \end{subequations}
       %
-      where $\theta = \arctan b/Z$ and $V_\mathrm{rel} = V$ is the relative velocity of the centers
-      [where $V$ is the velocity appearing below Eq.~\eqref{eq:hephe-ext}]. If we now introduce a
-      two-centered coordinate system, placing the foci at the two nuclear centers
+      where $\theta = \arctan b/Z$ and $V$ is the relative velocity of the centers, the same velocity
+      appearing below Eq.~\eqref{eq:hephe-ext}. If we now introduce a two-centered coordinate system,
+      placing the foci at the two nuclear centers
       %
       \begin{equation} \label{eq:psc}
             \left\{
@@ -436,10 +449,8 @@
       %
       \begin{equation} \label{eq:1sonlyetf}
          \tilde{\varphi}_{\sigma j}^{1s} (\mathbf{r},t) =
-                       a^{\sigma j}_T (t)  e^{- \frac{i v_\mathrm{rel} z \cos \theta}{2}}
-                                           \chi^{0}_{T1} (\mathbf{r},t)
-                     + a^{\sigma j}_P (t)  e^{  \frac{i v_\mathrm{rel} z \cos \theta}{2}}
-                                           \chi^{0}_{P1} (\mathbf{r},t).
+                      a^{\sigma j}_T (t)  e^{-\frac{i V z \cos \theta}{2}} \chi^{0}_{T1} (\mathbf{r},t)
+                    + a^{\sigma j}_P (t)  e^{ \frac{i V z \cos \theta}{2}} \chi^{0}_{P1} (\mathbf{r},t).
       \end{equation}
       %
       This will offer at least some of the correction provided by the full \textsc{etf}. Unfortunately,
@@ -467,7 +478,7 @@
       \end{equation}
       %
       If one assumes that both the propagated and final states can be represented as a single Slater
-      determinant then the probability in question becomes
+      determinant then the probability in question may be expressed in the form
       %
       \begin{equation} \label{eq:detProb}
          P_{f_1 f_2 f_3}(t_f) = \det \left[ \gamma_{f f^\prime}(t_f) \right],
@@ -481,11 +492,11 @@
                                \braket{\varphi_{\sigma j}(t_f) | f^\prime},
       \end{equation}
       %
-      with the transition amplitudes $\braket{f | \varphi_{\sigma j}(t_f)} =
-      \braket{\tilde{\chi}^l_{c k} | \varphi_{\sigma j}(t_f)}$ (for some $k$, $l$, $c$, and properly
-      orthogonalized basis functions $\tilde{\chi}^l_{c k}$) readily calculable from the dynamics. A
-      model of this type which ignores the functional correlations~\cite{p-he2p-he} is consistent with
-      an \textsc{iem} description.
+      with $f$ and $f`$ $\in \{f_1, f_2, f_3\}$, and the transition amplitudes
+      $\braket{f | \varphi_{\sigma j}(t_f)} = \braket{\tilde{\chi}^l_{c k} | \varphi_{\sigma j}(t_f)}$
+      (for some $k$, $l$, $c$, and properly orthogonalized basis functions $\tilde{\chi}^l_{c k}$)
+      readily calculable from the dynamics. A model of this type which ignores the functional
+      correlations~\cite{p-he2p-he} is consistent with an \textsc{iem} description.
 
       Alternatively, one could consider the probability to explicitly measure the states of some subset
       of the total number of particles. These so called inclusive probabilities can be expressed in
@@ -665,7 +676,12 @@
    one can easily determine $\sigma_{01}$ from their disclosed results. Their values seem to be in much
    better agreement with experiment in the high energy range than either n\textsc{etf} or p\textsc{etf}
    models. This can perhaps be explained by the presence of correlation in the \textsc{ievm}
-   calculations.
+   calculations. As will be discussed in more detail below both of our models underestimate
+   $\sigma_{02}$ and $\sigma_{03}$ in this impact energy range. Keeping in mind that $\sum p_{kl} = 1$
+   the increase in these channels resulting from the incorporation of correlation effects, antiscreening
+   in particular, would be drawn in part from the current channel od focus $\sigma_{01}$ resulting in a
+   decrease putting our results in better agreement with both Sigaud and Montenegro and the experimental
+   data.
 
    For the results of single electron capture to the projectile, the process of Eq.~\eqref{eq:tpi120}
    depicted in Fig.~\ref{fig:cs120}, both n\textsc{etf} and p\textsc{etf} models are essential
