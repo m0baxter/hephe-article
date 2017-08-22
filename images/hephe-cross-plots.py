@@ -230,7 +230,7 @@ if __name__ == "__main__":
     #plt.plot( petf[0],  petf[4],  "g--", linewidth = lw, label = "$\mathrm{pETF}$" )
     #plt.plot( netf[0],  netf[4],  "b-.", linewidth = lw, label = "$\mathrm{nETF}$" )
     plt.errorbar(Dub89_021[0], Dub89_021[1], yerr = Dub89_021[2], fmt = "bd", markersize = mrks)
-    plt.errorbar(FTFHLP_95_021[0], FTFHLP_95_021[1], yerr = FTFHLP_95_021[2], fmt = "gd", markersize = mrks)
+    plt.errorbar(FTFHLP_95_021[0], FTFHLP_95_021[1], yerr = FTFHLP_95_021[2], fmt = "go", markersize = mrks)
 
     plt.xlim([8,1100])
     plt.ylim( ymin = 0 )
